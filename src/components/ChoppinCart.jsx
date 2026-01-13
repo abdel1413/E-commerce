@@ -27,31 +27,31 @@ export const shoppinCart = () => {
         </a>
       </div>
       </div>
-      <div class="main">
-      <div class="products-grid">
-        <div class="product-container">
-          <div class="product-image-container">
-            <img class="product-image"
+      <div className="main">
+      <div className="products-grid">
+        <div className="product-container">
+          <div className="product-image-container">
+            <img className="product-image"
               src="images/products/athletic-cotton-socks-6-pairs.jpg" alt=""/>
           </div>
 
-          <div class="product-name limit-text-to-2-lines">
+          <div className="product-name limit-text-to-2-lines">
             Black and Gray Athletic Cotton Socks - 6 Pairs
           </div>
 
-          <div class="product-rating-container">
-            <img class="product-rating-stars"
+          <div className="product-rating-container">
+            <img className="product-rating-stars"
               src="images/ratings/rating-45.png" alt="4.5 stars" />
-            <div class="product-rating-count link-primary">
+            <div className="product-rating-count link-primary">
               87
             </div>
           </div>
 
-          <div class="product-price">
+          <div className="product-price">
             $10.90
           </div>
 
-          <div class="product-quantity-container">
+          <div className="product-quantity-container">
             <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
@@ -66,41 +66,41 @@ export const shoppinCart = () => {
             </select>
           </div>
 
-          <div class="product-spacer"></div>
+          <div className="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div className="added-to-cart">
             <img src="images/icons/checkmark.png" alt=""/>
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button className="add-to-cart-button button-primary">
             Add to Cart
           </button>
         </div>
 
-        <div class="product-container">
-          <div class="product-image-container">
-            <img class="product-image"
+        <div className="product-container">
+          <div className="product-image-container">
+            <img className="product-image"
               src="images/products/intermediate-composite-basketball.jpg" alt=""/>
           </div>
 
-          <div class="product-name limit-text-to-2-lines">
+          <div className="product-name limit-text-to-2-lines">
             Intermediate Size Basketball
           </div>
 
-          <div class="product-rating-container">
-            <img class="product-rating-stars"
+          <div className="product-rating-container">
+            <img className="product-rating-stars"
               src="images/ratings/rating-40.png" alt="" />
-            <div class="product-rating-count link-primary">
+            <div className="product-rating-count link-primary">
               127
             </div>
           </div>
 
-          <div class="product-price">
+          <div className="product-price">
             $20.95
           </div>
 
-          <div class="product-quantity-container">
+          <div className="product-quantity-container">
             <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
@@ -115,32 +115,32 @@ export const shoppinCart = () => {
             </select>
           </div>
 
-          <div class="product-spacer"></div>
+          <div className="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div className="added-to-cart">
             <img src="images/icons/checkmark.png" />
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button className="add-to-cart-button button-primary">
             Add to Cart
           </button>
         </div>
 
-        <div class="product-container">
-          <div class="product-image-container">
-            <img class="product-image"
+        <div className="product-container">
+          <div className="product-image-container">
+            <img className="product-image"
               src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"/>
           </div>
 
-          <div class="product-name limit-text-to-2-lines">
+          <div className="product-name limit-text-to-2-lines">
             Adults Plain Cotton T-Shirt - 2 Pack
           </div>
 
-          <div class="product-rating-container">
-            <img class="product-rating-stars"
+          <div className="product-rating-container">
+            <img className="product-rating-stars"
               src="images/ratings/rating-45.png" />
-            <div class="product-rating-count link-primary">
+            <div className="product-rating-count link-primary">
               56
             </div>
           </div>
@@ -149,7 +149,7 @@ export const shoppinCart = () => {
             $7.99
           </div>
 
-          <div class="product-quantity-container">
+          <div className="product-quantity-container">
             <select>
               <option selected value="1">1</option>
               <option value="2">2</option>
@@ -164,14 +164,14 @@ export const shoppinCart = () => {
             </select>
           </div>
 
-          <div class="product-spacer"></div>
+          <div className="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div className="added-to-cart">
             <img src="images/icons/checkmark.png"/>
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button className="add-to-cart-button button-primary">
             Add to Cart
           </button>
         </div>
