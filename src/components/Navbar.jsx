@@ -1,9 +1,10 @@
-export const navbar = () => {
+
+import '../styles/navbar.css'
+export const Navbar = () => {
   return (
-    <nav className="w-full bg-white shadow-md">
+    <nav className="w-full bg-white shadow-md navbar">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <div className="text-2xl font-bold text-gray-800">E-Commerce</div>
-        <ul className="flex space-x-6">
+        <ul className="flex space-x-6 navbar-list">
           <li>
             <a href="#" className="text-gray-600 hover:text-gray-800">
               Home
