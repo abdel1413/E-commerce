@@ -1,25 +1,32 @@
 export const shoppinCart = () => {
   return (
-    <div className="fixed top-0 right-0 m-4">
-      <button className="relative bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 4m5-4v6m4-6v6m1-10h2m-6 0h2m4 0h2"
-          ></path>
-        </svg>
-        <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-          3
-        </span>
-      </button>
-    </div>
+   <>
+   <div className="amazon-header">
+   <div className="amazon-header-left-section">
+    <a href="" className="cart-link header-link">
+        <img src="images/icons/cart-icon.png" alt="Shopping Cart" />
+    </a>
+   </div>
+   <div class="amazon-header-middle-section">
+        <input className="search-bar" type="text" placeholder="Search"/>
+
+        <button class="search-button">
+          <img class="search-icon" src="images/icons/search-icon.png"/>
+        </button>
+      </div>
+      <div className="amazon-header-right-section">
+        <a className="orders-link header-link" href="orders.html">
+          <span className="returns-text">Returns</span>
+          <span className="orders-text">& Orders</span>
+        </a>
+
+        <a class="cart-link header-link" href="checkout.html">
+          <img className="cart-icon" src="images/icons/cart-icon.png"/>
+          <div className="cart-quantity">3</div>
+          <div className="cart-text">Cart</div>
+        </a>
+      </div>
+      </div>
+   </>
   );
 }   
