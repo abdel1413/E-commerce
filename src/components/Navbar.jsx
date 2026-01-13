@@ -1,31 +1,24 @@
 
 import '../styles/navbar.css'
+
 export const Navbar = () => {
   return (
     <nav className="w-full bg-white shadow-md navbar">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        <ul className="flex space-x-6 navbar-list">
-          <li>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              Home
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              Products
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#" className="text-gray-600 hover:text-gray-800">
-              Contact
-            </a>        
-            </li>
-        </ul>
+       <div class="amazon-header-right-section">
+
+        <a class="orders-link header-link" href="orders.html">
+          <span class="returns-text">Returns</span>
+          <span class="orders-text">& Orders</span>
+        </a>
+
+        <a class="cart-link header-link" href="checkout.html">
+          <img class="cart-icon" src="images/icons/cart-icon.png" alt="Shopping Cart" />
+          <div class="cart-quantity">3</div>
+          <div class="cart-text">Cart</div>
+        </a>
+      </div>
+        
       </div>
     </nav>
   );
