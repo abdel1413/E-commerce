@@ -4,7 +4,7 @@ export const ProductList = () => {
       {/* Example Product Card */}
       <div className="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300">
         <img
-          src="https://via.placeholder.com/150"
+          // src="https://via.placeholder.com/150"
           alt="Product"
           className="w-full h-48 object-cover mb-4 rounded"
         />

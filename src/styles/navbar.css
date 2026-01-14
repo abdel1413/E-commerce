@@ -1,17 +1,36 @@
-.navbar-list{
-    display: flex;
-    gap: 2rem;  
 
+.amazon-header-right-section{
+    display: flex;
+    align-items: center;
+    border: 2px solid red;
+    
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
 }
-.navbar-list li{
-    list-style: none;
-}
-.navbar-list li a{
+.cart-link{
+    display: flex;
+    align-items: center;
     text-decoration: none;
- 
+    color: #333;
     font-weight: 500;
 }
-.navbar-list li a:hover{
-    color: #007BFF;
-}       
+.cart-icon{
+    width:35px;
+    height:25px; 
+    background: black;
+   
+    margin-left: 5px;
+}
+
+.cart-quantity{
+    position: absolute ;
+    top: 37px;
+    left: 185px;
+    /* background-color:transparent */
+    color: white;
+    z-index: 1;
+  
+    font-size:1.2em;
+}
 
