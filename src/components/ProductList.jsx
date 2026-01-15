@@ -1,4 +1,5 @@
 import { products } from "../data/product";
+import "../styles/productImages.css";
 
  console.log(products);
 export const ProductList = () => {
@@ -13,7 +14,7 @@ export const ProductList = () => {
           
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover mb-4 rounded"
+          className="w-full h-48 object-cover mb-4 rounded img-product"
         />
         <h3 className="text-lg font-semibold mb-2">${product.name}</h3>
         <p className="text-gray-600 mb-4">${product.priceCents}</p>
