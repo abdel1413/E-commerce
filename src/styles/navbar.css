@@ -16,8 +16,7 @@
     float: right;
     display: flex;
     align-items: center;
-    border: 2px solid red;
-    
+
     padding: 5px;
     border-radius: 5px;
     cursor: pointer;
@@ -26,36 +25,50 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color:white
+    color:white;
     font-weight: 500;
+    font-size: 1.2rem;
+    height: 40px;
+    padding: 5px;
+    border:  1px solid  transparent;
+    
+
+
 }
+
+.cart-link:hover{
+    border: 1px solid white;
+
+}   
+ 
 .cart-link div{
-    margin-left: 10px;
     color: white;
+  
 }   
 .orders-link {
     margin-right: 20px;
     text-decoration: none;
     color: white;
     font-weight: 500;
-}   
-.cart-icon{
-    width:35px;
-    height:25px; 
-    background: black;
+    border:1px solid transparent;
+}  
+.orders-link:hover {
+    border:1px solid  white;
    
-    margin-left: 5px;
+} 
+.cart-icon{
+    width:45px;
+    height:45px; 
+    background: black;
+    position: relative;
+
 }
 
 .cart-quantity{
-    position: relative;
-    top: 37px;
-    left: 185px;
-    /* background-color:transparent */
+    position: absolute;
+    top: 5px;
+    right: 80px;
     color: white;
-    z-index: 1;
-    background-color: green;
-  
     font-size:1.2em;
 }
 
