@@ -1,23 +1,25 @@
 
-import '../styles/navbar.css'
+// import '../styles/navbar.css'
 
 import { Input } from './Input';
 
 export const Navbar = () => {
   return (
-    <nav className="w-full bg-white shadow-md navbar">
+    <nav className="w-full bg-blue-500 shadow-md navbar flex items-center text-white pw-4">
 
       < Input />
-       <div className="amazon-header-right-section">
+       <div className="amazon-header-right-section flex items-center gap-6  ">
           <a className="orders-link header-link" href="orders.html">
             <span className="returns-text">Returns</span>
             <span className="orders-text">& Orders</span>
           </a>
 
-          <a className="cart-link header-link" href="checkout.html">
+          <a className=" flex  cart-link header-link" href="checkout.html">
+            <div className="cart-icon-container relative flex items-center">
             <img className="cart-icon" src="images//icons/cart-icon.png" alt="cart" />
-            <div className="cart-quantity">3</div>
-            <div className="cart-text">Cart</div>
+            <div className=" absolute top-2 left-10 cart-quantity text-lg">3</div>
+            <div className="cart-text ">Cart</div>
+            </div>
           </a>
       </div>
         
