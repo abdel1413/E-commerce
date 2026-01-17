@@ -5,11 +5,11 @@ import { Input } from './Input';
 
 export const Navbar = () => {
   return (
-    <nav className="w-full bg-blue-500 shadow-md navbar flex items-center text-white pw-4">
+    <nav className="w-full bg-blue-500 shadow-md navbar flex items-center text-white pw-4 py-2 justify-between">
 
       < Input />
        <div className="amazon-header-right-section flex items-center gap-6  ">
-          <a className="orders-link header-link" href="orders.html">
+          <a className="orders-link header-link hover:border-white" href="orders.html">
             <span className="returns-text">Returns</span>
             <span className="orders-text">& Orders</span>
           </a>

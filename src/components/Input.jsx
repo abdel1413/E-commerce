@@ -3,7 +3,7 @@
   //  import "../styles/Input.css";
 export const Input = () => {
   return (
-    <div className="flex items-center w-1/2 mx-auto search-input-container">
+    <div className="flex items-center w-1/2 mx-auto search-input-container ">
       <input
         type="text"
         placeholder="Search for products..."
