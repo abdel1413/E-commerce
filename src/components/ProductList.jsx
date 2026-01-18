@@ -1,8 +1,10 @@
 import { products } from "../data/product";
+import { DropDown } from "./DropDown";
 // import "../styles/productImages.css";
 
  console.log(products);
 export const ProductList = () => {
+
   
 return (
     
@@ -22,6 +24,7 @@ return (
         />
         <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
         <p className="text-gray-600 mb-4">${product.priceCents}</p>
+           <DropDown />
         <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors duration-300">
           Add to Cart
         </button>
