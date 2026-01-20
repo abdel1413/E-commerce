@@ -1,7 +1,7 @@
 export const CheckoutPage = () => {
   return (
-    <div>
-      <div className="checkout-header">
+    <>
+    <div className="checkout-header header-container flex items-center px-6 py-4 ">
       <div className="header-content">
         <div className="checkout-header-left-section">
           <a href="amazon.html">
@@ -13,35 +13,34 @@ export const CheckoutPage = () => {
           Checkout (<a className="return-to-home-link"
             href="amazon.html">3 items</a>)
         </div>
-
         <div className="checkout-header-right-section">
           <img src="images/icons/checkout-lock-icon.png"/>
         </div>
       </div>
     </div>
 
-    <div className="main">
+    <div className="main checkout-container max-w-7xl mx-auto p-6">
       <div className="page-title">Review your order</div>
 
-      <div className="checkout-grid">
-        <div className="order-summary">
-          <div className="cart-item-container">
+      <div className="checkout-grid grid w-full grid-cols-1 md:grid-cols-3 gap-6 mt-6 p-4">
+        <div className="order-summary md:col-span-2">
+
+          <div className="cart-item-container w-800 border border-gray-600 pb-4 mb-4 rounded ">
             <div className="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
-
-            <div className="cart-item-details-grid">
-              <img className="product-image"
+            <div className="cart-item-details-grid flex flex gap-4 center justify-space-between">
+              <img className="product-image w-32 h-32 object-cover rounded"
                 src="images/products/athletic-cotton-socks-6-pairs.jpg"/>
 
-              <div className="cart-item-details">
+              <div className="cart-item-details w-49%">
                 <div className="product-name">
                   Black and Gray Athletic Cotton Socks - 6 Pairs
                 </div>
                 <div className="product-price">
                   $10.90
                 </div>
-                <div className="product-quantity">
+                <div className="product-quantity flex items-center gap-4">
                   <span>
                     Quantity: <span className="quantity-label">2</span>
                   </span>
@@ -53,9 +52,8 @@ export const CheckoutPage = () => {
                   </span>
                 </div>
               </div>
-
-              <div className="delivery-options">
-                <div className="delivery-options-title">
+              <div className="delivery-options flex flex-col">
+                <div className="delivery-options-title mb-2 font-semibold">
                   Choose a delivery option:
                 </div>
                 <div className="delivery-option">
@@ -63,7 +61,7 @@ export const CheckoutPage = () => {
                     className="delivery-option-input"
                     name="delivery-option-1"/>
                   <div>
-                    <div className="delivery-option-date">
+                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Tuesday, June 21
                     </div>
                     <div className="delivery-option-price">
@@ -71,12 +69,12 @@ export const CheckoutPage = () => {
                     </div>
                   </div>
                 </div>
-                <div className="delivery-option">
+                <div className="delivery-option ">
                   <input type="radio"
                     className="delivery-option-input"
                     name="delivery-option-1"/>
                   <div>
-                    <div className="delivery-option-date">
+                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Wednesday, June 15
                     </div>
                     <div className="delivery-option-price">
@@ -89,7 +87,7 @@ export const CheckoutPage = () => {
                     className="delivery-option-input"
                     name="delivery-option-1"/>
                   <div>
-                    <div className="delivery-option-date">
+                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Monday, June 13
                     </div>
                     <div className="delivery-option-price">
@@ -101,23 +99,25 @@ export const CheckoutPage = () => {
             </div>
           </div>
 
-          <div className="cart-item-container">
+
+
+          <div className="cart-item-container w-800   border border-gray-600 pb-4 mb-4 rounded ">
             <div className="delivery-date">
               Delivery date: Wednesday, June 15
             </div>
 
-            <div className="cart-item-details-grid">
-              <img className="product-image"
+            <div className="cart-item-details-grid flex flex gap-4 center">
+              <img className="product-image w-32 h-32 object-cover rounded"
                 src="images/products/intermediate-composite-basketball.jpg"/>
 
-              <div className="cart-item-details">
+              <div className="cart-item-details  border border-blue-600">
                 <div className="product-name">
                   Intermediate Size Basketball
                 </div>
                 <div className="product-price">
                   $20.95
                 </div>
-                <div className="product-quantity">
+                <div className="product-quantity flex  gap-4">
                   <span>
                     Quantity: <span className="quantity-label">1</span>
                   </span>
@@ -130,8 +130,8 @@ export const CheckoutPage = () => {
                 </div>
               </div>
 
-              <div className="delivery-options">
-                <div className="delivery-options-title">
+              <div className="delivery-options flex flex-col ">
+                <div className="delivery-options-title mb-2 font-semibold">
                   Choose a delivery option:
                 </div>
 
@@ -139,7 +139,7 @@ export const CheckoutPage = () => {
                   <input type="radio" className="delivery-option-input"
                     name="delivery-option-2"/>
                   <div>
-                    <div className="delivery-option-date">
+                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Tuesday, June 21
                     </div>
                     <div className="delivery-option-price">
@@ -151,7 +151,7 @@ export const CheckoutPage = () => {
                   <input type="radio" checked className="delivery-option-input"
                     name="delivery-option-2"/>
                   <div>
-                    <div className="delivery-option-date">
+                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Wednesday, June 15
                     </div>
                     <div className="delivery-option-price">
@@ -163,7 +163,7 @@ export const CheckoutPage = () => {
                   <input type="radio" className="delivery-option-input"
                     name="delivery-option-2"/>
                   <div>
-                    <div className="delivery-option-date">
+                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Monday, June 13
                     </div>
                     <div className="delivery-option-price">
@@ -214,7 +214,7 @@ export const CheckoutPage = () => {
       </div>
     </div>
   
-    </div>
+    </>
  
             
   )
