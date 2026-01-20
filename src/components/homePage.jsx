@@ -1,5 +1,7 @@
 import { products } from "../data/product";
 import { DropDown } from "./DropDown";
+import { Footer } from "./footer";
+import { Navbar } from "./Navbar";
 // import "../styles/productImages.css";
 
 
@@ -9,8 +11,11 @@ export const HomePage = () => {
 return (
     
   //  < div className="max-w-7xl mx-auto mt-8">
+  <>
+  <Navbar />
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
->
+>  
+  
      { products.map((product) => (
     
       <div
@@ -32,6 +37,8 @@ return (
      
       ))  }
     </div>
+    {/* <Footer /> */}
+    </>
 // </div>
     
   );

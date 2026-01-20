@@ -2,7 +2,7 @@ import { products } from "../data/product";
 import { DropDown } from "./DropDown";
 // import "../styles/productImages.css";
 
- console.log(products);
+ 
 export const ProductList = () => {
 
   
