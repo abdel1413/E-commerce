@@ -5,8 +5,8 @@ export const Orders = () => {
     <div className="main">
       <div className="page-title">Your Orders</div>
 
-      <div className="orders-grid">
-        <div className="order-container">
+      <div className="orders-grid flex ">
+        <div className="order-container ">
           
           <div className="order-header">
             <div className="order-header-left-section">
@@ -87,52 +87,52 @@ export const Orders = () => {
 
         <div className="order-container">
 
-          <div className="order-header">
-            <div className="order-header-left-section">
+          <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
+            <div className="order-header-left-section flex gap-4 ">
               <div className="order-date">
                 <div className="order-header-label">Order Placed:</div>
                 <div>June 10</div>
               </div>
+
               <div className="order-total">
                 <div className="order-header-label">Total:</div>
                 <div>$41.90</div>
               </div>
-            </div>
-
-            <div className="order-header-right-section">
+             </div>
+             <div className="order-header-right-section">
               <div className="order-header-label">Order ID:</div>
               <div>b6b6c212-d30e-4d4a-805d-90b52ce6b37d</div>
             </div>
           </div>
 
-          <div className="order-details-grid">
-            <div className="product-image-container">
-              <img src="images/products/intermediate-composite-basketball.jpg"/>
-            </div>
-
-            <div className="product-details">
-              <div className="product-name">
-                Intermediate Size Basketball
+          <div className="order-details-grid flex w-800 justify-between item-center px-2 py-6 ">
+            <div className="flex gap-4 ">
+                <div className="product-image-container w-32 h-32">
+                 <img src="images/products/intermediate-composite-basketball.jpg"/>
+                </div>
+                <div className="product-details">
+                    <div className="product-name">
+                        Intermediate Size Basketball
+                    </div>
+                    <div className="product-delivery-date">
+                        Arriving on: June 17
+                     </div>
+                     <div className="product-quantity">
+                        Quantity: 2
+                    </div>
+                  <button className="buy-again-button button-primary flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 p-2 rounded-5">
+                    <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
+                    <span className="buy-again-message">Buy it again</span>
+                 </button>
               </div>
-              <div className="product-delivery-date">
-                Arriving on: June 17
-              </div>
-              <div className="product-quantity">
-                Quantity: 2
-              </div>
-              <button className="buy-again-button button-primary">
-                <img className="buy-again-icon" src="images/icons/buy-again.png"/>
-                <span className="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div className="product-actions">
-              <a href="tracking.html">
-                <button className="track-package-button button-secondary">
+           </div>
+            {/* <div className="product-actions bg-green-500 border w-25 px-4"> */}
+              <Link to="/tracking.html" className=" border w-25 px-4">
+                <button className="track-package-button button-secondary bg-green-300 hover:bg-green-500 transition-color duration-300 rounded  w-25 px-4 py-2 ">
                   Track package
                 </button>
-              </a>
-            </div>
+              </Link>
+            {/* </div> */}
           </div>
         </div>
       </div>
