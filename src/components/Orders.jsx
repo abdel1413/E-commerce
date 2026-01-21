@@ -5,11 +5,11 @@ export const Orders = () => {
     <div className="main">
       <div className="page-title">Your Orders</div>
 
-      <div className="orders-grid flex ">
-        <div className="order-container ">
+      <div className="orders-grid  ">
+        <div className="order-container border border-gray-600 mb-5">
           
-          <div className="order-header">
-            <div className="order-header-left-section">
+          <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300">
+            <div className="order-header-left-section flex gap-4">
               <div className="order-date">
                 <div className="order-header-label">Order Placed:</div>
                 <div>August 12</div>
@@ -26,9 +26,9 @@ export const Orders = () => {
             </div>
           </div>
 
-          <div className="order-details-grid">
+          <div className="order-details-grid flex w-800 justify-between item-center px-2 py-6 ">
             <div className="product-image-container">
-              <img src="images/products/athletic-cotton-socks-6-pairs.jpg"/>
+              <img src="images/products/athletic-cotton-socks-6-pairs.jpg" className=" w-32 h-32"/>
             </div>
 
             <div className="product-details">
@@ -41,52 +41,54 @@ export const Orders = () => {
               <div className="product-quantity">
                 Quantity: 1
               </div>
-              <button className="buy-again-button button-primary">
-                <img className="buy-again-icon" src="images/icons/buy-again.png"/>
-                <span className="buy-again-message">Buy it again</span>
-              </button>
+              <button className="buy-again-button button-primary flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 p-2 rounded-5">
+                    <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
+                    <span className="buy-again-message">Buy it again</span>
+                 </button>
             </div>
 
             <div className="product-actions">
-              <a href="tracking.html">
-                <button className="track-package-button button-secondary">
+              <Link to="/tracking.html" className=" border w-25 px-4">
+                <button className="track-package-button button-secondary bg-green-300 hover:bg-green-500 transition-color duration-300 rounded  w-25 px-4 py-2 ">
                   Track package
                 </button>
-              </a>
+              </Link>
             </div>
 
-            <div className="product-image-container">
-              <img src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg"/>
-            </div>
-
-            <div className="product-details">
-              <div className="product-name">
-                Adults Plain Cotton T-Shirt - 2 Pack
-              </div>
-              <div className="product-delivery-date">
-                Arriving on: August 19
-              </div>
-              <div className="product-quantity">
-                Quantity: 2
-              </div>
-              <button className="buy-again-button button-primary">
-                <img className="buy-again-icon" src="images/icons/buy-again.png"/>
-                <span className="buy-again-message">Buy it again</span>
-              </button>
-            </div>
-
-            <div className="product-actions">
-              <a href="tracking.html">
-                <button className="track-package-button button-secondary">
+             <div className="flex gap-4">
+                <div className="product-image-container">
+                <img src="images/products/adults-plain-cotton-tshirt-2-pack-teal.jpg" className="w-32 h-32"/>
+                </div>
+                <div className="product-details">
+                <div className="product-name">
+                    Adults Plain Cotton T-Shirt - 2 Pack
+                </div>
+                <div className="product-delivery-date">
+                    Arriving on: August 19
+                </div>
+                <div className="product-quantity">
+                    Quantity: 2
+                </div>
+                <button className="buy-again-button button-primary flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 p-2 rounded-5">
+                    <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
+                    <span className="buy-again-message">Buy it again</span>
+                 </button>
+                </div>
+             </div>
+             <div className="product-actions">
+               <Link to="/tracking" className=" border w-25 px-4">
+                <button className="track-package-button button-secondary bg-green-300 hover:bg-green-500 transition-color duration-300 rounded  w-25 px-4 py-2 ">
                   Track package
                 </button>
-              </a>
+               </Link>
             </div>
           </div>
         </div>
 
-        <div className="order-container">
 
+
+
+        <div className="order-container border border-gray-600">
           <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
             <div className="order-header-left-section flex gap-4 ">
               <div className="order-date">
