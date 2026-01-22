@@ -48,7 +48,7 @@ export const Orders = () => {
                     </div>
                 </div>
               <div className="product-actions">
-                <Link to="/tracking.html" className=" border w-25 px-4">
+                <Link to="/tracking" className=" border w-25 px-4">
                     <button className="bg-white hover:bg-gray-100 transition duration-200 rounded-xl  w-25 px-3 py-2 shadow-md hover:shadow-xl ">
                     Track package
                     </button>
