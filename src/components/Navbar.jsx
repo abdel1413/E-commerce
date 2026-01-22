@@ -8,10 +8,10 @@ import { Input } from './Input';
 
 export const Navbar = () => {
   return (
-    <nav className=" bg-blue-500 shadow-md navbar flex items-center text-white justify-between px-6 py-2">
+    <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-3 py-2 w-full ">
 
       < Input />
-       <div className="amazon-header-right-section flex items-center gap-6 ">
+       <div className="amazon-header-right-section flex  gap-6 ">
           <Link
           to="/Orders"
            className="orders-link header-link border-2 border-blue-500 hover:border-gray-200 transition-colors duration-300 p-4">
@@ -33,7 +33,6 @@ export const Navbar = () => {
           </div>
       </div>
         
-     
     </nav>
   );
 }

@@ -1,23 +1,9 @@
+import { Navbar } from "./Navbar";
+
 export const CheckoutPage = () => {
   return (
     <>
-    <div className="checkout-header header-container flex items-center px-6 py-4 ">
-      <div className="header-content flex justify-between w-full items-center">
-        <div className="checkout-header-left-section">
-          <a href="amazon.html">
-            <img className="amazon-logo" src="./images/icons/amazon-logo.png"/>
-            <img className="amazon-mobile-logo" src="images/amazon-mobile-logo.png"/>
-          </a>
-        </div>
-        <div className="checkout-header-middle-section">
-          Checkout (<a className="return-to-home-link link-primary font-bold text-lg"
-            href="amazon.html">3 items</a>)
-        </div>
-        <div className="checkout-header-right-section">
-          <img src="images/icons/checkout-lock-icon.png"/>
-        </div>
-      </div>
-    </div>
+    <Navbar />
 
     <div className="main checkout-container max-w-7xl mx-auto p-6">
       <div className="page-title text-lg font-bold text-red-400 ">Review your order</div>
@@ -46,10 +32,10 @@ export const CheckoutPage = () => {
                   <span>
                     Quantity: <span className="quantity-label">2</span>
                   </span>
-                  <span className="update-quantity-link link-primary">
+                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-gray-400">
                     Update
                   </span>
-                  <span className="delete-quantity-link link-primary">
+                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-gray-400">
                     Delete
                   </span>
                 </div>
@@ -125,10 +111,10 @@ export const CheckoutPage = () => {
                   <span>
                     Quantity: <span className="quantity-label">1</span>
                   </span>
-                  <span className="update-quantity-link link-primary">
+                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-gray-400 p0">
                     Update
                   </span>
-                  <span className="delete-quantity-link link-primary">
+                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-gray-400 p0">
                     Delete
                   </span>
                 </div>
