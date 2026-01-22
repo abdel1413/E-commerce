@@ -25,8 +25,8 @@ export const CheckoutPage = () => {
       <div className="checkout-grid grid w-full grid-cols-1 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
 
-          <div className="cart-item-container w-800 border border-gray-600 pb-4 mb-4 rounded ">
-            <div className="delivery-date text-lg font-semibold mb-2">
+          <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  ">
+            <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
             </div>
             <div className="cart-item-details-grid  flex justify-around border-red-600 py-2 px-4">
@@ -77,7 +77,7 @@ export const CheckoutPage = () => {
                     className="delivery-option-input"
                     name="delivery-option-1"/>
                   <div>
-                    <div className="delivery-option-date text-bold text-blue-500 text-lg">
+                    <div className="delivery-option-date text-bold text-blue-500 text-xl mt-2 mb-2">
                       Wednesday, June 15
                     </div>
                     <div className="delivery-option-price">
@@ -104,8 +104,8 @@ export const CheckoutPage = () => {
 
 
 
-          <div className="cart-item-container w-800   border border-gray-600 pb-4 mb-4 rounded ">
-            <div className="delivery-date text-lg font-semibold mb-2">
+          <div className="cart-item-container w-800  bg-gray-100  border border-gray-300 pb-4 mb-4 rounded-lg px-4 shadow:shadow-lg ">
+            <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Wednesday, June 15
             </div>
 
@@ -181,7 +181,7 @@ export const CheckoutPage = () => {
           </div>
         </div>
 
-        <div className="payment-summary border border-gray-600 p-4 rounded h-fit">
+        <div className="payment-summary border border-gray-400 p-4 rounded h-fit shadow: shadow-lg">
           <div className="payment-summary-title text-xl font-bold mb-4 text-center">
             Order Summary
           </div>
