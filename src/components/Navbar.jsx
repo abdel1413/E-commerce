@@ -8,25 +8,28 @@ import { Input } from './Input';
 
 export const Navbar = () => {
   return (
-    <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-3 py-2 w-full ">
+    <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-5 py-2 w-full ">
 
       < Input />
        <div className="amazon-header-right-section flex  gap-6 ">
           <Link
           to="/Orders"
-           className="orders-link header-link border-2 border-blue-500 hover:border-gray-200 transition-colors duration-300 p-4">
+           className="orders-link header-link border border-blue-500 hover:border-gray-200 transition-colors duration-300 p-2">
             <span className="returns-text">Returns</span>
             <span className="orders-text">& Orders</span>
           </Link>
 
 
-          <div  className="flex header-link border-2 border-blue-500 hover:border-gray-200 transition-colors duration-300 p-1">
+          <div  className="flex border border-blue-500 hover:border-gray-200 transition-colors duration-300 p-1">
+          
           <Link 
           to="/Checkout"
           >
-            <div className="cart-icon-container relative flex items-center size-12" >
+            <div className="flex gap-1 item-center">
+            <div className="cart-icon-container relative flex items-center size-12  border border-blue-500 " >
               <img className="cart-icon " src="images/icons/icons/cart-icon.png" alt="cart" />
               <div className=" absolute top-0 left-5 cart-quantity  text-lg text-black ">3</div>
+            </div>
               <div className="cart-text ">Cart</div>
             </div>
           </Link>
