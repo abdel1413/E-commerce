@@ -6,11 +6,11 @@ import { Input } from './Input';
 
 
 
-export const Navbar = () => {
+export const Navbar = ({searchItem,setSearchItem}) => {
   return (
     <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-5 py-2 w-full ">
 
-      < Input />
+      < Input searchItem={searchItem} setSearchItem={setSearchItem}/>
        <div className="amazon-header-right-section flex  gap-6 ">
           <Link
           to="/Orders"
