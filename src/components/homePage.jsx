@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import { products } from "../data/product";
 import { DropDown } from "./DropDown";
 import { Footer } from "./footer";
@@ -9,16 +9,24 @@ import { Navbar } from "./Navbar";
 
 export const HomePage = () => {
   const [displayProducts,setDisplayProducts] = useState(products)
- const [searchItem, setSearchItem]=useState('')
 
+ const [searchItem, setSearchItem]=useState('')
+ const [debounce,setDebounce] = useState('')
+
+ useEffect(()=>{
+  let timer = setTimeout(()=>{setDebounce(searchItem)},500)
+  return ()=>clearTimeout(timer)
+ },[searchItem])
+ console.log(displayProducts)
+ console.log(debounce)
  
  const filtered = displayProducts.filter(product =>{
   console.log(product.name)
   console.log('sss',searchItem.toLowerCase())
  return product.name.toLowerCase().includes(searchItem.toLowerCase())
  })
- console.log('f', filtered)
-  
+ console.log('f',filtered)
+
 return (
     
   //  < div className="max-w-7xl mx-auto mt-8">
@@ -27,7 +35,7 @@ return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
 >  
   
-     { products.map((product) => (
+     { displayProducts.map((product) => (
     
       
       <div
