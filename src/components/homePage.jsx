@@ -3,12 +3,21 @@ import { products } from "../data/product";
 import { DropDown } from "./DropDown";
 import { Footer } from "./footer";
 import { Navbar } from "./Navbar";
+
 // import "../styles/productImages.css";
 
 
 export const HomePage = () => {
- const [searchItem, setSearchItem]=useState("")
- console.log(searchItem)
+  const [displayProducts,setDisplayProducts] = useState(products)
+ const [searchItem, setSearchItem]=useState('')
+
+ 
+ const filtered = displayProducts.filter(product =>{
+  console.log(product.name)
+  console.log('sss',searchItem.toLowerCase())
+ return product.name.toLowerCase().includes(searchItem.toLowerCase())
+ })
+ console.log('f', filtered)
   
 return (
     
