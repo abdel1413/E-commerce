@@ -28,8 +28,8 @@ return (
           alt={product.name}
           className="w-full h-48 object-cover mb-4 rounded img-product"
         />
-        {console.log(product.rating.stars *10)}
-        <h3 className="text-lg font-semibold mb-2">{product.name}</h3>
+        
+        <h3 className="text-lg font-semibold mb-2 line-clamp-1">{product.name}</h3>
         <p className="text-gray-600 mb-4">${(product.priceCents/100).toFixed(2)}</p>
         <div className="flex gap-2 item-center ">
         
