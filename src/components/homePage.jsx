@@ -1,43 +1,48 @@
-import { use, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { products } from "../data/product";
 import { DropDown } from "./DropDown";
-import { Footer } from "./footer";
 import { Navbar } from "./Navbar";
+import { useDebounce } from "./useDebounce";
 
-// import "../styles/productImages.css";
-
-
+ 
 export const HomePage = () => {
-  const [displayProducts,setDisplayProducts] = useState(products)
+  const [searchItem, setSearchItem]=useState('')
+  const [debounce,setDebounce] = useState('')
+ 
 
- const [searchItem, setSearchItem]=useState('')
- const [debounce,setDebounce] = useState('')
+  // using debounce hook for reusability
+    const useDeb =  useDebounce(searchItem, 500)
+    console.log('debounce',useDeb)
 
+  //use debounce to avoid filtering on every key stoke;
  useEffect(()=>{
   let timer = setTimeout(()=>{setDebounce(searchItem)},500)
   return ()=>clearTimeout(timer)
  },[searchItem])
- console.log(displayProducts)
+
  console.log(debounce)
  
- const filtered = displayProducts.filter(product =>{
+ const filtered = products.filter(product =>{
   console.log(product.name)
   console.log('sss',searchItem.toLowerCase())
- return product.name.toLowerCase().includes(searchItem.toLowerCase())
+ return product.name.toLowerCase().includes(debounce.toLowerCase())
  })
  console.log('f',filtered)
 
 return (
     
-  //  < div className="max-w-7xl mx-auto mt-8">
   <>
   <Navbar  searchItem={searchItem} setSearchItem={setSearchItem}/>
+     {  filtered.length ===0 &&
+      <div className=" min-h-screen w-full grid grid-cols-1 flex items-center justify-center">
+         <h1 className="text-red-500 text-xl text-center">No product found!</h1>
+      </div>
+}
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
->  
-  
-     { displayProducts.map((product) => (
-    
+>
       
+     { 
+      filtered.map((product) => (
       <div
          className="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
          key={product.id}>
