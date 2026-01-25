@@ -10,8 +10,8 @@ export const HomePage = () => {
   const [debounce,setDebounce] = useState('')
   const [cart,setCart] = useState([])
  
-
-  // using debounce hook for reusability
+ 
+  // using debounce hook for reusability   
     const useDeb =  useDebounce(searchItem, 500)
     console.log('debounce',useDeb)
 
@@ -29,22 +29,23 @@ export const HomePage = () => {
  
 
  const addToCart = (product)=>{
-  console.log('pr', product)
+
   //setCart(...prev +1 )
   setCart(prev => {
-    console.log('prev vv', prev)
+ 
     const existingProduct = prev.find(item => item.id ===product.id)
-    console.log(existingProduct)
+   
     if(existingProduct){
      return  prev.map(item => item.id ==product.id 
       ? {...item, quantity:item.quantity+1}
       : item
      )
     }
-    console.log('add', prev)
-    return [...prev ,{product, quantity: 1}]
+   
+    
+    return [...prev ,{...product, quantity: 1}]
   })
-
+ console.log('cart',cart)
   
  }
 
