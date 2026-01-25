@@ -6,7 +6,8 @@ import { Input } from './Input';
 
 
 
-export const Navbar = ({searchItem,setSearchItem}) => {
+export const Navbar = ({searchItem,setSearchItem, cart}) => {
+  console.log(typeof cart)
   return (
     <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-5 py-2 w-full ">
 
@@ -26,11 +27,11 @@ export const Navbar = ({searchItem,setSearchItem}) => {
           to="/Checkout"
           >
             <div className="flex gap-1 item-center">
-            <div className="cart-icon-container relative flex items-center size-12  border border-blue-500 " >
-              <img className="cart-icon " src="images/icons/icons/cart-icon.png" alt="cart" />
-              <div className=" absolute top-0 left-5 cart-quantity  text-lg text-black ">3</div>
-            </div>
-              <div className="cart-text ">Cart</div>
+               <div className="cart-icon-container relative flex items-center size-12  border border-blue-500 " >
+                  <img className="cart-icon " src="images/icons/icons/cart-icon.png" alt="cart" />
+                  <div className=" absolute top-0 left-5 cart-quantity  text-lg text-black">{cart}</div>
+                </div>
+                <div className="cart-text text-center mt-3 ">cart</div>
             </div>
           </Link>
           </div>

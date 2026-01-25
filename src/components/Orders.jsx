@@ -6,7 +6,7 @@ export const Orders = () => {
     <div className="main">
         <Navbar/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
-
+   
       <div className="orders-grid  ">
         <div className="order-container border border-gray-200 mb-5 shadow-xl">
           

@@ -8,6 +8,7 @@ import { useDebounce } from "./useDebounce";
 export const HomePage = () => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
+  const [cart,setCart] = useState([])
  
 
   // using debounce hook for reusability
@@ -23,16 +24,34 @@ export const HomePage = () => {
  console.log(debounce)
  
  const filtered = products.filter(product =>{
-  console.log(product.name)
-  console.log('sss',searchItem.toLowerCase())
  return product.name.toLowerCase().includes(debounce.toLowerCase())
  })
- console.log('f',filtered)
+ 
+
+ const addToCart = (product)=>{
+  console.log('pr', product)
+  //setCart(...prev +1 )
+  setCart(prev => {
+    console.log('prev vv', prev)
+    const existingProduct = prev.find(item => item.id ===product.id)
+    console.log(existingProduct)
+    if(existingProduct){
+     return  prev.map(item => item.id ==product.id 
+      ? {...item, quantity:item.quantity+1}
+      : item
+     )
+    }
+    console.log('add', prev)
+    return [...prev ,{product, quantity: 1}]
+  })
+
+  
+ }
 
 return (
     
   <>
-  <Navbar  searchItem={searchItem} setSearchItem={setSearchItem}/>
+  <Navbar  searchItem={searchItem} setSearchItem={setSearchItem} cart={cart}/>
      {  filtered.length ===0 &&
       <div className=" min-h-screen w-full grid grid-cols-1 flex items-center justify-center">
          <h1 className="text-red-500 text-xl text-center">No product found!</h1>
@@ -61,7 +80,9 @@ return (
         </div>
            
            <DropDown />
-        <button className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors duration-300">
+        <button
+        onClick={()=>addToCart(product)}
+         className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors duration-300">
           Add to Cart
         </button>
       </div>
