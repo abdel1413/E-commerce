@@ -1,15 +1,17 @@
+import { useState } from "react";
 import { Navbar } from "./Navbar";
 
 export const CheckoutPage = ({cart}) => {
+  const [input, setInput] = useState("")
+
+  const handleChange = (e)=> setInput(e.target.value)
   
   return (
     <>
     <Navbar />
-
     <div className="main checkout-container max-w-7xl mx-auto p-6">
       <div className="page-title text-lg font-bold text-red-400 ">Review your order</div>
       <div className="checkout-grid grid w-full grid-cols-1 md:grid-cols-3 gap-6 p-1">
-
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
           <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  ">
@@ -47,7 +49,8 @@ export const CheckoutPage = ({cart}) => {
                   Choose a delivery option:
                 </div>
                 <div className="delivery-option flex items-center ">
-                  <input type="radio" checked
+                  <input type="radio" value={input}
+                    onChange={handleChange}
                     className="delivery-option-input"
                     name="delivery-option-1"/>
                   <div >
@@ -75,7 +78,8 @@ export const CheckoutPage = ({cart}) => {
                 <div className="delivery-option flex items-center ">
                   <input type="radio"
                     className="delivery-option-input"
-                    name="delivery-option-1"/>
+                    name="delivery-option-1"
+                    />
                   <div>
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Monday, June 13
