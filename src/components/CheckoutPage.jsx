@@ -9,11 +9,12 @@ export const CheckoutPage = ({cart}) => {
   return (
     <>
     <Navbar />
-    <div className="main checkout-container max-w-7xl mx-auto p-6">
+    <div className="main checkout-container max-w-7xl p-6">
       <div className="page-title text-lg font-bold text-red-400 ">Review your order</div>
       <div className="checkout-grid grid w-full grid-cols-1 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
+        
           <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  ">
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
@@ -24,7 +25,7 @@ export const CheckoutPage = ({cart}) => {
               <img className="product-image w-32 h-32 object-cover rounded"
                 src={item.image}/>
 
-              <div className="cart-item-details ">
+              <div className="cart-item-details m-2 ">
                 <div className="product-name">
                   {item.name}
                 </div>
@@ -35,24 +36,24 @@ export const CheckoutPage = ({cart}) => {
                   <span>
                     Quantity: <span className="quantity-label">{item.quantity}</span>
                   </span>
-                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-gray-400">
+                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-blue-600">
                     Update
                   </span>
-                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-gray-400">
+                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-blue-600">
                     Delete
                   </span>
                 </div>
               </div>
               </div>
-              <div className="delivery-options flex flex-col">
+              <div className="flex flex-col border border-blue-500 p-2">
                 <div className="delivery-options-title mb-2 font-semibold">
                   Choose a delivery option:
                 </div>
                 <div className="delivery-option flex items-center ">
                   <input type="radio" value={input}
                     onChange={handleChange}
-                    className="delivery-option-input"
-                    name="delivery-option-1"/>
+                    className="delivery-option-input size-4"
+                    name={item.name}/>
                   <div >
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Tuesday, June 21
@@ -64,8 +65,10 @@ export const CheckoutPage = ({cart}) => {
                 </div>
                 <div className="delivery-option flex items-center ">
                   <input type="radio"
-                    className="delivery-option-input"
-                    name="delivery-option-1"/>
+                    value={input}
+                    onChange={handleChange}
+                    className="delivery-option-input size-4"
+                    name={item.name}/>
                   <div>
                     <div className="delivery-option-date text-bold text-blue-500 text-xl mt-2 mb-2">
                       Wednesday, June 15
@@ -77,8 +80,10 @@ export const CheckoutPage = ({cart}) => {
                 </div>
                 <div className="delivery-option flex items-center ">
                   <input type="radio"
-                    className="delivery-option-input"
-                    name="delivery-option-1"
+                  value={input}
+                  onChange={handleChange}
+                    className="delivery-option-input size-4"
+                    name={item.name}
                     />
                   <div>
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">
