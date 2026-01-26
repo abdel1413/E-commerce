@@ -5,13 +5,13 @@ export const CheckoutPage = ({cart}) => {
   return (
     <>
     <Navbar />
-  
+
     <div className="main checkout-container max-w-7xl mx-auto p-6">
       <div className="page-title text-lg font-bold text-red-400 ">Review your order</div>
       <div className="checkout-grid grid w-full grid-cols-1 md:grid-cols-3 gap-6 p-1">
 
-       { cart.map(item => (
         <div className="order-summary md:col-span-2">
+       { cart.map(item => (
           <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  ">
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
@@ -88,9 +88,9 @@ export const CheckoutPage = ({cart}) => {
               </div>
             </div>
           </div>
-        </div>
     )) 
   }
+     </div>
      <div className="payment-summary border border-gray-400 p-4 rounded h-fit shadow: shadow-lg">
           <div className="payment-summary-title text-xl font-bold mb-4 text-center">
             Order Summary
