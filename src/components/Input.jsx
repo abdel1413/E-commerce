@@ -2,7 +2,7 @@
 
 
   //  import "../styles/Input.css";
-export const Input = ({setSearchItem}) => {
+export const Input = ({searchItem, setSearchItem}) => {
 
 
     const handleChange = (e)=> {
@@ -14,6 +14,7 @@ export const Input = ({setSearchItem}) => {
         type="text"
         placeholder="Search for products..."
         className="w-full py-2 px-2 text-black border rounded-l-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+         value={searchItem}
         onChange={handleChange}
       />
       <button className=" py-1.5 px-2 cursor-pointer search-icon-container bg-[#FFA41C] rounded-r-xl ">

@@ -5,7 +5,7 @@ import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
 
  
-export const HomePage = ({cart, addToCart}) => {
+export const HomePage = ({cart, cartQuantity, addToCart, }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
 
@@ -32,7 +32,7 @@ export const HomePage = ({cart, addToCart}) => {
 return (
     
   <>
-  <Navbar  searchItem={searchItem} setSearchItem={setSearchItem} cart={cart}/>
+  <Navbar  searchItem={searchItem} setSearchItem={setSearchItem} cart={cart}  cartQuantity={cartQuantity}/>
      {  filtered.length ===0 &&
       <div className=" min-h-screen w-full grid grid-cols-1 flex items-center justify-center">
          <h1 className="text-red-500 text-xl text-center">No product found!</h1>

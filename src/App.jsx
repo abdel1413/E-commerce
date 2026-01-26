@@ -13,7 +13,7 @@ import { useState } from 'react'
 
 function App() {
   const [cart,setCart] = useState([])
-
+ 
   const addToCart = (product)=>{
   setCart(prev => {
  
@@ -33,14 +33,17 @@ function App() {
   
  }
 
+ const cartQuantity = 
+   cart.reduce((acc, next )=> acc + next.quantity, 0)
+ 
   
 
   return (
     <>
     
   <Routes>
-    <Route index element={ <HomePage cart={cart} addToCart={addToCart}/>} /> 
-    <Route path='/checkout' element={ <CheckoutPage cart={cart} />} />
+    <Route index element={ <HomePage cart={cart} addToCart={addToCart} cartQuantity={cartQuantity}/>} /> 
+    <Route path='/checkout' element={ <CheckoutPage cart={cart}  cartQuantity={cartQuantity}/>} />
     <Route path='/orders' element={ <Orders />} />
     <Route path='/tracking' element={<Tracking/>} />
   </Routes>

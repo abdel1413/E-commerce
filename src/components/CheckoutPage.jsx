@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Navbar } from "./Navbar";
 
-export const CheckoutPage = ({cart}) => {
-  const [input, setInput] = useState("")
+export const CheckoutPage = ({cart, cartQuantity}) => {
+  console.log('check cart ',cartQuantity)
 
+  const [input, setInput] = useState("")
+  let totalItem = cart.reduce((acc,next)=> acc+next.quantity, 0)
+   console.log('total', totalItem)
   const handleChange = (e)=> setInput(e.target.value)
   
   return (
@@ -15,12 +18,13 @@ export const CheckoutPage = ({cart}) => {
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
         
-          <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  ">
+          <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  "
+          key={item.id}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
             </div>
             <div className="cart-item-details-grid  flex justify-around border-red-600 py-2 px-4">
-              <div className="flex gap-4 center justify-space-between">
+              <div className="flex gap-4 center justify-space-between" key={item.id}>
 
               <img className="product-image w-32 h-32 object-cover rounded"
                 src={item.image}/>
@@ -29,17 +33,17 @@ export const CheckoutPage = ({cart}) => {
                 <div className="product-name">
                   {item.name}
                 </div>
-                <div className="product-price">
-                {item.price}
+                <div className="product-price text-red-400">
+                ${(item.priceCents/100).toFixed(2)}
                 </div>
                 <div className="product-quantity flex items-center gap-4">
                   <span>
                     Quantity: <span className="quantity-label">{item.quantity}</span>
                   </span>
-                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-blue-600">
+                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
                     Update
                   </span>
-                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-blue-600">
+                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
                     Delete
                   </span>
                 </div>
@@ -106,7 +110,7 @@ export const CheckoutPage = ({cart}) => {
           </div>
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
-            <div>Items (3):</div>
+            <div>Items ({cartQuantity}):</div>
             <div className="payment-summary-money">$42.75</div>
           </div>
 
