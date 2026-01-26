@@ -7,7 +7,7 @@ import { Input } from './Input';
 
 
 export const Navbar = ({searchItem,setSearchItem, cart}) => {
-  console.log('dca',cart)
+
   const quantity = cart? cart.reduce((acc,next)=> acc + next.quantity,0)
                        : 0;
   
@@ -38,8 +38,7 @@ export const Navbar = ({searchItem,setSearchItem, cart}) => {
             </div>
           </Link>
           </div>
-      </div>
-        
+      </div>  
     </nav>
   );
 }

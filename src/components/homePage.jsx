@@ -5,13 +5,13 @@ import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
 
  
-export const HomePage = () => {
+export const HomePage = ({cart, addToCart}) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
-  const [cart,setCart] = useState([])
+
  
  
-  // using debounce hook for reusability   
+  // using debounce hook for reusability  but not for this purpose 
     const useDeb =  useDebounce(searchItem, 500)
     console.log('debounce',useDeb)
 
@@ -28,27 +28,7 @@ export const HomePage = () => {
  })
  
 
- const addToCart = (product)=>{
-
-  //setCart(...prev +1 )
-  setCart(prev => {
  
-    const existingProduct = prev.find(item => item.id ===product.id)
-   
-    if(existingProduct){
-     return  prev.map(item => item.id ==product.id 
-      ? {...item, quantity:item.quantity+1}
-      : item
-     )
-    }
-   
-    
-    return [...prev ,{...product, quantity: 1}]
-  })
- console.log('cart',cart)
-  
- }
-
 return (
     
   <>
