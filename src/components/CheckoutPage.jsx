@@ -1,13 +1,26 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Navbar } from "./Navbar";
 
-export const CheckoutPage = ({cart, cartQuantity}) => {
-  console.log('check cart ',cartQuantity)
-
+export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
   const [input, setInput] = useState("")
-  let totalItem = cart.reduce((acc,next)=> acc+next.quantity, 0)
-   console.log('total', totalItem)
-  const handleChange = (e)=> setInput(e.target.value)
+  const [delivery,setDelivery] = useState(false)
+
+    const shippingPrice = useRef(0)
+  
+
+
+  const handleDelivery = ()=>{
+
+  }
+
+
+
+
+   
+  const handleChange = (e)=>{ 
+    console.log('e',e.target.value)
+    setInput(e.target.value)
+  }
   
   return (
     <>
@@ -17,22 +30,19 @@ export const CheckoutPage = ({cart, cartQuantity}) => {
       <div className="checkout-grid grid w-full grid-cols-1 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
-        
-          <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  "
+          <div className="cart-item-container w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg  dark: bg-gray-700 text-white"
           key={item.id}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
             </div>
             <div className="cart-item-details-grid  flex justify-around border-red-600 py-2 px-4">
               <div className="flex gap-4 center justify-space-between" key={item.id}>
-
               <img className="product-image w-32 h-32 object-cover rounded"
                 src={item.image}/>
-
               <div className="cart-item-details m-2 ">
                 <div className="product-name">
                   {item.name}
-                </div>
+                </div>y-option-date text-bold text-blue-500 text-xl mt-2 mb-2
                 <div className="product-price text-red-400">
                 ${(item.priceCents/100).toFixed(2)}
                 </div>
@@ -56,7 +66,7 @@ export const CheckoutPage = ({cart, cartQuantity}) => {
                 <div className="delivery-option flex items-center ">
                   <input type="radio" value={input}
                     onChange={handleChange}
-                    className="delivery-option-input size-4"
+                    className="delivery-option-input size-4  mr-1"
                     name={item.name}/>
                   <div >
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">
@@ -74,10 +84,10 @@ export const CheckoutPage = ({cart, cartQuantity}) => {
                     className="delivery-option-input size-4"
                     name={item.name}/>
                   <div>
-                    <div className="delivery-option-date text-bold text-blue-500 text-xl mt-2 mb-2">
+                    <div className="deliver text-bold text-blue-500">
                       Wednesday, June 15
                     </div>
-                    <div className="delivery-option-price">
+                    <div className="delivery-option-price" ref={shippingPrice}>
                       $4.99 - Shipping
                     </div>
                   </div>
@@ -93,7 +103,7 @@ export const CheckoutPage = ({cart, cartQuantity}) => {
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       Monday, June 13
                     </div>
-                    <div className="delivery-option-price">
+                    <div className="delivery-option-price" ref={shippingPrice}>
                       $9.99 - Shipping
                     </div>
                   </div>
@@ -111,7 +121,7 @@ export const CheckoutPage = ({cart, cartQuantity}) => {
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
             <div>Items ({cartQuantity}):</div>
-            <div className="payment-summary-money">$42.75</div>
+            <div className="payment-summary-money">${(totalBeforeTax/100).toFixed(2)}</div>
           </div>
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
