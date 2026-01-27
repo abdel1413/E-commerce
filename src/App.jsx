@@ -8,11 +8,24 @@ import { CheckoutPage } from './components/CheckoutPage'
 import { Orders } from './components/Orders'
 import { HomePage } from './components/homePage'
 import { Tracking } from './components/Tracking'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 
 function App() {
   const [cart,setCart] = useState([])
+  useEffect(()=> {
+    fetch("http://localhost:3000/api/products")
+    .then(resp =>{
+      return resp.json()})
+    .then(data => console.log('data',data))
+  },[])
+
+  useEffect(()=>{
+
+    axios.get("http://localhost:3000/api/products").then(resp=> resp.data)
+  },[])
+
 
   const addToCart = (product)=>{
   setCart(prev => {
