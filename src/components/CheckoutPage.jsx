@@ -4,7 +4,7 @@ import axios from "axios";
 import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 
-console.log('dyas',dayjs(Date.now()))
+
 
 export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
   const [input, setInput] = useState("")
@@ -15,7 +15,7 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
      )
 
    },[])
-    console.log('delivery ',delivery)
+   
     const shippingPrice = useRef(0)
   
 
@@ -42,7 +42,7 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
           <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg "
-          key={item.id}>
+            key={item.id}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
             
@@ -78,9 +78,9 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
                 </div>
                 
                  {delivery.map(option =>{
-                      console.log('option', option)
+                      console.log('option ms',dayjs(option.estimatedTimeMs).format("dddd, MMM, D"))
                       const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
-                   return( <div key={item.id}
+                   return( <div key={option.id}
                    className="delivery-option flex items-center ">
                   <input type="radio"
                   value={input}
