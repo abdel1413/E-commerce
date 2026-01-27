@@ -5,7 +5,6 @@ import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
 import { moneyFormatter } from "../moneyFormatter";
 
- 
 export const HomePage = ({cart, cartQuantity, addToCart, }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
