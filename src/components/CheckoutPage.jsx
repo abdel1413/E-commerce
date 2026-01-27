@@ -3,15 +3,15 @@ import { Navbar } from "./Navbar";
 
 export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
   const [input, setInput] = useState("")
-  const [delivery,setDelivery] = useState(false)
+  // const [delivery,setDelivery] = useState(false)
 
     const shippingPrice = useRef(0)
   
 
 
-  const handleDelivery = ()=>{
+  // const handleDelivery = ()=>{
 
-  }
+  // }
 
 
 
