@@ -3,6 +3,7 @@ import { products } from "../data/product";
 import { DropDown } from "./DropDown";
 import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
+import { moneyFormatter } from "../moneyFormatter";
 
  
 export const HomePage = ({cart, cartQuantity, addToCart, }) => {
@@ -54,7 +55,7 @@ return (
         />
         
         <h3 className="text-lg font-semibold mb-2 line-clamp-1">{product.name}</h3>
-        <p className="text-gray-600 mb-4">${(product.priceCents/100).toFixed(2)}</p>
+        <p className="text-gray-600 mb-4">${moneyFormatter(product.priceCents)}</p>
         <div className="flex gap-2 item-center ">
         
         <img className="ratings w-32 h-5 text-blue-500" src={`/images/ratings/rating-${product.rating.stars*10}.png`}/> <span>{product.rating.count}</span>

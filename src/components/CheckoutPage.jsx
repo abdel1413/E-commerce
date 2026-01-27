@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Navbar } from "./Navbar";
 import axios from "axios";
+import { moneyFormatter } from "../moneyFormatter";
 
 export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
   const [input, setInput] = useState("")
@@ -51,7 +52,8 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
                   {item.name}
                 </div>y-option-date text-bold text-blue-500 text-xl mt-2 mb-2
                 <div className="product-price text-red-400">
-                ${(item.priceCents/100).toFixed(2)}
+                  
+                ${moneyFormatter(item.priceCents)}
                 </div>
                 <div className="product-quantity flex items-center gap-4">
                   <span>
