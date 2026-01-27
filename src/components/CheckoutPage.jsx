@@ -1,10 +1,17 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Navbar } from "./Navbar";
+import axios from "axios";
 
 export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
   const [input, setInput] = useState("")
-  // const [delivery,setDelivery] = useState(false)
+   const [delivery,setDelivery] = useState([])
+   useEffect(()=>{
+     axios.get('http://localhost:3000/api/delivery-options?expand=estimatedDeliveryTime').then( response =>
+      setDelivery(response.data)
+     )
 
+   },[])
+    console.log('delivery ',delivery)
     const shippingPrice = useRef(0)
   
 

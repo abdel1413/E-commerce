@@ -18,14 +18,18 @@ function App() {
     fetch("http://localhost:3000/api/products")
     .then(resp =>{
       return resp.json()})
-    .then(data => console.log('data',data))
+    .then(data => console.log('fetch data',data))
+
+
   },[])
 
   useEffect(()=>{
-
-    axios.get("http://localhost:3000/api/products").then(resp=> resp.data)
+    axios.get("http://localhost:3000/api/products").then(resp=> console.log('axis product',resp.data))
+    axios.get('http://localhost:3000/api/cart-items').then(resp => console.log('cart items',resp.data))
+    
   },[])
 
+  
 
   const addToCart = (product)=>{
   setCart(prev => {
@@ -40,7 +44,7 @@ function App() {
     }
    
     
-    return [...prev ,{...product, quantity: 1}]
+    return [...prev ,{...product, quantity: 1,}]
   })
 
   
