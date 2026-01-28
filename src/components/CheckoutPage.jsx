@@ -3,10 +3,17 @@ import { Navbar } from "./Navbar";
 import axios from "axios";
 import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
+import { cartArray } from "../data/cartArray";
+import { deliverOptions } from "../data/deliverOptions";
+
+
+deliverOptions
+cartArray
 
 
 
 export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
+  console.log('cart',cart)
   const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -17,19 +24,16 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
    },[])
    
     const shippingPrice = useRef(0)
-  
 
+ console.log('deliver',delivery)
 
   // const handleDelivery = ()=>{
 
   // }
 
-
-
-
    
   const handleChange = (e)=>{ 
-    console.log('e',e.target.value)
+    
     setInput(e.target.value)
   }
   
@@ -41,14 +45,13 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
       <div className="checkout-grid grid w-full grid-cols-3 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
-          <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg "
-            key={item.id}>
+          <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg dark: text-black "
+            key={item.productId}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
             
             </div>
-            <div className="cart-item-details-grid  flex gap-4 items-center  py-1 px-1">
-              
+            <div className="cart-item-details-grid  flex gap-4 items-center  py-1 px-1" >
                 <img className="product-image w-32 h-32 object-cover rounded p-0 "
                 src={item.image}/>
                  <div className="cart-item-details m-2 w-1/3">
@@ -78,15 +81,15 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
                 </div>
                 
                  {delivery.map(option =>{
-                      console.log('option ms',dayjs(option.estimatedTimeMs).format("dddd, MMM, D"))
                       const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
                    return( <div key={option.id}
                    className="delivery-option flex items-center ">
                   <input type="radio"
                   value={input}
+                  checked={option.id === item.deliveryOptionId}
                   onChange={handleChange}
                     className="delivery-option-input size-4"
-                    name={item.name}
+                    name={`delivery-option-${item.productId}`}
                     />
                   <div>
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">

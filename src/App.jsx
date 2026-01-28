@@ -18,16 +18,18 @@ function App() {
     fetch("http://localhost:3000/api/products")
     .then(resp =>{
       return resp.json()})
-    .then(data => data)
+    .then(data =>(data))
 
 
   },[])
 
   useEffect(()=>{
     axios.get("http://localhost:3000/api/products").then(resp=> resp.data)
-    axios.get('http://localhost:3000/api/cart-items').then(resp => resp.data)
+    axios.get('http://localhost:3000/api/cart-items?expand=product').then(resp => console.log('cart ttt',resp.data))
     
   },[])
+
+  
 
   
 
