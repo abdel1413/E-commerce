@@ -34,35 +34,36 @@ function App() {
   
 
   const addToCart = (product)=>{
-  setCart(prev => {
+    console.log('product to add', product.id)
+    setCart(prev => {
+    let  deliveryOptionId = 0;
  
     const existingProduct = prev.find(item => item.id ===product.id)
-    
     if(existingProduct){
      return  prev.map(item => item.id ==product.id 
-      ? {...item, quantity:item.quantity+1}
+      ? {...item, quantity:item.quantity+1, }
       : item
      )
     }
    
-    
-    return [...prev ,{...product, quantity: 1,}]
+    return [...prev ,{...product, quantity: 1,deliveryOptionId: deliveryOptionId++}]
   })
-
-  
+   
  }
-
+console.log('cart new ',cart)
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
- 
-   
   const totalBeforeTax = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
   console.log('tot', totalBeforeTax)
   return (
     <>
     
   <Routes>
-    <Route index element={ <HomePage cart={cart} addToCart={addToCart} cartQuantity={cartQuantity}/>} /> 
+    <Route index element={ <HomePage 
+    cart={cart} 
+    addToCart={addToCart} 
+    cartQuantity={cartQuantity}/>}
+     /> 
     <Route path='/checkout' element={
        <CheckoutPage cart={cart} 
         cartQuantity={cartQuantity}

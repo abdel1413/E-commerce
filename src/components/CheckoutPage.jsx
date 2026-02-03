@@ -13,7 +13,7 @@ cartArray
 
 
 export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
-  console.log('cart',cart)
+  console.log('cart checkout',cart)
   const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -22,8 +22,8 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
      )
 
    },[])
-   
-    const shippingPrice = useRef(0)
+   console.log('delivery options', delivery)
+    //const shippingPrice = useRef(0)
 
  console.log('deliver',delivery)
 
@@ -45,6 +45,7 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
       <div className="checkout-grid grid w-full grid-cols-3 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
+     
           <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg dark: text-black "
             key={item.productId}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
@@ -81,6 +82,7 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
                 </div>
                 
                  {delivery.map(option =>{
+                  console.log('option id and item delivery id', option, item.deliveryOptionId )
                       const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
                    return( <div key={option.id}
                    className="delivery-option flex items-center ">
@@ -96,7 +98,7 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
                       {/* Monday, June 13 */}
                       {dayjs(option.estimatedTimeMs).format("dddd, MMMM, D")}
                     </div>
-                    <div className="delivery-option-price" ref={shippingPrice}>
+                    <div className="delivery-option-price" >
 
                       {/* $9.99 - Shipping */}
                       {shipping}
