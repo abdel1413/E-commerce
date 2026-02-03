@@ -10,6 +10,7 @@ import { HomePage } from './components/homePage'
 import { Tracking } from './components/Tracking'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { deliverOptions } from './data/deliverOptions'
 
 
 function App() {
@@ -36,7 +37,7 @@ function App() {
   const addToCart = (product)=>{
     console.log('product to add', product.id)
     setCart(prev => {
-    let  deliveryOptionId = 0;
+
  
     const existingProduct = prev.find(item => item.id ===product.id)
     if(existingProduct){
@@ -46,7 +47,7 @@ function App() {
      )
     }
    
-    return [...prev ,{...product, quantity: 1,deliveryOptionId: deliveryOptionId++}]
+    return [...prev ,{...product, quantity: 1,deliveryOptionId: deliverOptions[0]?.id}]
   })
    
  }
@@ -66,6 +67,7 @@ console.log('cart new ',cart)
      /> 
     <Route path='/checkout' element={
        <CheckoutPage cart={cart} 
+       setCart={setCart}
         cartQuantity={cartQuantity}
         totalBeforeTax={totalBeforeTax}
         />} />

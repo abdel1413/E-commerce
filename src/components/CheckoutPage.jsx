@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import axios from "axios";
 import { moneyFormatter } from "../moneyFormatter";
@@ -12,9 +12,9 @@ cartArray
 
 
 
-export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
+export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
   console.log('cart checkout',cart)
-  const [input, setInput] = useState("")
+  // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
      axios.get('http://localhost:3000/api/delivery-options?expand=estimatedDeliveryTime').then( response =>
@@ -32,9 +32,20 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
   // }
 
    
-  const handleChange = (e)=>{ 
+  const handleDeliveryChange = (productId, optionId)=>{ 
     
-    setInput(e.target.value)
+    // setInput(e.target.value)
+    setCart(prev => prev.map(item =>
+      item.productId === productId
+      ? {...item, deliveryOptionId: optionId}
+      : item
+      ))
+      console.log('option id', optionId)
+      // const selectedOption = delivery.find(option => option.id === optionId)
+      // if(selectedOption){
+      //   shippingPrice.current = selectedOption.priceCents
+      //   console.log('shipping price', shippingPrice.current)
+      // }  
   }
   
   return (
@@ -87,9 +98,8 @@ export const CheckoutPage = ({cart, cartQuantity, totalBeforeTax}) => {
                    return( <div key={option.id}
                    className="delivery-option flex items-center ">
                   <input type="radio"
-                  value={input}
                   checked={option.id === item.deliveryOptionId}
-                  onChange={handleChange}
+                  onChange={()=>handleDeliveryChange(item.productId, option.id, option.priceCents)}
                     className="delivery-option-input size-4"
                     name={`delivery-option-${item.productId}`}
                     />
