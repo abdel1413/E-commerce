@@ -13,7 +13,7 @@ cartArray
 
 
 export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
- 
+    console.log('cart in checkout', cart)
   // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -35,7 +35,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
     
     // setInput(e.target.value)
     setCart(prev => prev.map(item =>
-      item.productId === productId
+      item.id === productId
       ? {...item, deliveryOptionId: optionId}
       : item
       ))
@@ -55,9 +55,9 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
       <div className="checkout-grid grid w-full grid-cols-3 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
-          
+           console.log('item  id', item.id),
           <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg dark: text-black "
-            key={item.productId}>
+            key={item.id}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
               Delivery date: Tuesday, June 21
             
@@ -101,9 +101,9 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
                   <input type="radio"
                   key={option.id}
                   checked={option.id === item.deliveryOptionId}
-                  onChange={()=>handleDeliveryChange(item.productId, option.id)}
+                  onChange={()=>handleDeliveryChange(item.id, option.id)}
                     className="delivery-option-input size-4"
-                    name={`delivery-option-${item.productId}`}
+                    name={`delivery-option-${item.id}`}
                     />
                   <div>
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">

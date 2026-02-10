@@ -1,7 +1,4 @@
 import { Navbar } from './components/Navbar'
-
-
-
 import './App.css'
 import { Route, Routes } from 'react-router'
 import { CheckoutPage } from './components/CheckoutPage'
@@ -15,6 +12,7 @@ import { deliverOptions } from './data/deliverOptions'
  
 function App() {
   const [cart,setCart] = useState([])
+  
   useEffect(()=> {
     fetch("http://localhost:3000/api/products")
     .then(resp =>{
@@ -48,7 +46,7 @@ function App() {
     }
     console.log('deliver options', deliverOptions[0])
 
-    return [...prev ,{...product, quantity: 1, deliveryOptionId: deliverOptions[0]?.id}]
+    return [...prev ,{...product, quantity: 1,deliveryOptionId: deliverOptions[0].id}]
   })
    
  }
@@ -62,17 +60,21 @@ function App() {
     <>
     
   <Routes>
-    <Route index element={ <HomePage 
+    <Route index
+     element={ <HomePage 
     cart={cart} 
     addToCart={addToCart} 
     cartQuantity={cartQuantity}/>}
      /> 
-    <Route path='/checkout' element={
-       <CheckoutPage cart={cart} 
+    <Route path='/checkout' 
+    element={
+       <CheckoutPage 
+       cart={cart} 
        setCart={setCart}
         cartQuantity={cartQuantity}
         totalBeforeTax={totalBeforeTax}
         />} />
+
     <Route path='/orders' element={ <Orders />} />
     <Route path='/tracking' element={<Tracking/>} />
   </Routes>
