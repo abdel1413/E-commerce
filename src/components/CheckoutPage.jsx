@@ -7,13 +7,13 @@ import { cartArray } from "../data/cartArray";
 import { deliverOptions } from "../data/deliverOptions";
 
 
-deliverOptions
+console.log('deliveries',deliverOptions)
 cartArray
 
 
 
 export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
-  console.log('cart checkout',cart)
+ 
   // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -22,17 +22,16 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
      )
 
    },[])
-   console.log('delivery options', delivery)
+  delivery
     //const shippingPrice = useRef(0)
 
- console.log('deliver',delivery)
 
   // const handleDelivery = ()=>{
 
   // }
 
    
-  const handleDeliveryChange = (productId, optionId)=>{ 
+  const handleDeliveryChange = (productId, optionId,)=>{ 
     
     // setInput(e.target.value)
     setCart(prev => prev.map(item =>
@@ -40,7 +39,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
       ? {...item, deliveryOptionId: optionId}
       : item
       ))
-      console.log('option id', optionId)
+     
       // const selectedOption = delivery.find(option => option.id === optionId)
       // if(selectedOption){
       //   shippingPrice.current = selectedOption.priceCents
@@ -56,7 +55,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
       <div className="checkout-grid grid w-full grid-cols-3 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
-     
+          
           <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg dark: text-black "
             key={item.productId}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
@@ -92,14 +91,17 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
                   Choose a delivery option:
                 </div>
                 
-                 {delivery.map(option =>{
-                  console.log('option id and item delivery id', option, item.deliveryOptionId )
-                      const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
+                 {deliverOptions.map(option =>{
+                  console.log('option id', option.id, 'item delivery id', item.deliveryOptionId )
+                  
+                    const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
+                   
                    return( <div key={option.id}
                    className="delivery-option flex items-center ">
                   <input type="radio"
+                  key={option.id}
                   checked={option.id === item.deliveryOptionId}
-                  onChange={()=>handleDeliveryChange(item.productId, option.id, option.priceCents)}
+                  onChange={()=>handleDeliveryChange(item.productId, option.id)}
                     className="delivery-option-input size-4"
                     name={`delivery-option-${item.productId}`}
                     />

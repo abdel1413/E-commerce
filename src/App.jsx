@@ -12,7 +12,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 
-
+ 
 function App() {
   const [cart,setCart] = useState([])
   useEffect(()=> {
@@ -35,27 +35,29 @@ function App() {
   
 
   const addToCart = (product)=>{
-    console.log('product to add', product.id)
+   
     setCart(prev => {
 
  
     const existingProduct = prev.find(item => item.id ===product.id)
     if(existingProduct){
-     return  prev.map(item => item.id ==product.id 
+     return  prev.map(item => item.id === product.id 
       ? {...item, quantity:item.quantity+1, }
       : item
      )
     }
-   
-    return [...prev ,{...product, quantity: 1,deliveryOptionId: deliverOptions[0]?.id}]
+    console.log('deliver options', deliverOptions[0])
+
+    return [...prev ,{...product, quantity: 1, deliveryOptionId: deliverOptions[0]?.id}]
   })
    
  }
-console.log('cart new ',cart)
+ console.log('cart', cart)
+
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
   const totalBeforeTax = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
-  console.log('tot', totalBeforeTax)
+  
   return (
     <>
     
