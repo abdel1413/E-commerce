@@ -12,7 +12,7 @@ import { deliverOptions } from './data/deliverOptions'
  
 function App() {
   const [cart,setCart] = useState([])
-  
+
   useEffect(()=> {
     fetch("http://localhost:3000/api/products")
     .then(resp =>{
@@ -24,7 +24,7 @@ function App() {
 
   useEffect(()=>{
     axios.get("http://localhost:3000/api/products").then(resp=> resp.data)
-    axios.get('http://localhost:3000/api/cart-items?expand=product').then(resp => console.log('cart ttt',resp.data))
+    axios.get('http://localhost:3000/api/cart-items?expand=product').then(resp => resp.data)
     
   },[])
 
@@ -50,7 +50,7 @@ function App() {
   })
    
  }
- console.log('cart', cart)
+ 
 
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)

@@ -7,13 +7,15 @@ import { cartArray } from "../data/cartArray";
 import { deliverOptions } from "../data/deliverOptions";
 
 
-console.log('deliveries',deliverOptions)
+
+
 cartArray
 
 
 
 export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
-    console.log('cart in checkout', cart)
+ 
+    
   // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -29,23 +31,25 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
   // const handleDelivery = ()=>{
 
   // }
-
+ 
    
-  const handleDeliveryChange = (productId, optionId,)=>{ 
+  const handleDeliveryChange = (productId, optionId,priceCents)=>{ 
     
-    // setInput(e.target.value)
-    setCart(prev => prev.map(item =>
-      item.id === productId
-      ? {...item, deliveryOptionId: optionId}
-      : item
-      ))
-     
-      // const selectedOption = delivery.find(option => option.id === optionId)
+    // const selectedOption = delivery.find(option => option.id === optionId)
       // if(selectedOption){
       //   shippingPrice.current = selectedOption.priceCents
       //   console.log('shipping price', shippingPrice.current)
-      // }  
+      // } 
+
+    setCart(prev => prev.map(item =>
+      item.id === productId
+      ? {...item, deliveryOptionId: optionId, shippingPrice: priceCents}
+      : item
+      ))
+     
+      
   }
+  const shippingPrice = cart.reduce((acc, next) => acc + (next.shippingPrice || 0), 0)
   
   return (
     <>
@@ -55,7 +59,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
       <div className="checkout-grid grid w-full grid-cols-3 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
-           console.log('item  id', item.id),
+          
           <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg dark: text-black "
             key={item.id}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
@@ -92,8 +96,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
                 </div>
                 
                  {deliverOptions.map(option =>{
-                  console.log('option id', option.id, 'item delivery id', item.deliveryOptionId )
-                  
+ 
                     const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
                    
                    return( <div key={option.id}
@@ -101,7 +104,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
                   <input type="radio"
                   key={option.id}
                   checked={option.id === item.deliveryOptionId}
-                  onChange={()=>handleDeliveryChange(item.id, option.id)}
+                  onChange={()=>handleDeliveryChange(item.id, option.id,option.priceCents)}
                     className="delivery-option-input size-4"
                     name={`delivery-option-${item.id}`}
                     />
@@ -140,7 +143,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
             <div>Shipping &amp; handling:</div>
-            <div className="payment-summary-money">$4.99</div>
+            <div className="payment-summary-money">${moneyFormatter(shippingPrice)}</div>
           </div>
 
           <div className="payment-summary-row subtotal-row flex justify-between mb-2 border-b border-gray-300 pb-2">
