@@ -13,7 +13,7 @@ cartArray
 
 
 
-export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
+export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice}) => {
  
     
   // const [input, setInput] = useState("")
@@ -50,6 +50,12 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
       
   }
   const shippingPrice = cart.reduce((acc, next) => acc + (next.shippingPrice || 0), 0)
+  console.log('shipping price', shippingPrice, totalPrice)
+  const totalBeforeTax = (totalPrice + shippingPrice)
+  console.log('total bef',totalBeforeTax)
+  const tax = ((totalPrice + shippingPrice)*0.1)
+  const orderTotal =(totalBeforeTax + tax )
+  console.log('order total', orderTotal)
   
   return (
     <>
@@ -138,7 +144,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
             <div>Items ({cartQuantity}):</div>
-            <div className="payment-summary-money">${(totalBeforeTax/100).toFixed(2)}</div>
+            <div className="payment-summary-money">${moneyFormatter(totalPrice)}</div>
           </div>
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
@@ -148,17 +154,17 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalBeforeTax}) => {
 
           <div className="payment-summary-row subtotal-row flex justify-between mb-2 border-b border-gray-300 pb-2">
             <div>Total before tax:</div>
-            <div className="payment-summary-money">$47.74</div>
+            <div className="payment-summary-money">${moneyFormatter(totalBeforeTax)}</div>
           </div>
 
           <div className="payment-summary-row flex justify-between mb-2 border-b border-gray-300 pb-2">
             <div>Estimated tax (10%):</div>
-            <div className="payment-summary-money">$4.77</div>
+            <div className="payment-summary-money">${moneyFormatter(tax)}</div>
           </div>
 
           <div className="payment-summary-row total-row flex justify-between font-bold text-lg mt-4 text-red-600">
             <div>Order total:</div>
-            <div className="payment-summary-money">$52.51</div>
+            <div className="payment-summary-money">${moneyFormatter(orderTotal)}</div>
           </div>
 
           <button className="place-order-button button-primary w-full mt-4 py-3 px-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">

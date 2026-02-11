@@ -54,7 +54,7 @@ function App() {
 
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
-  const totalBeforeTax = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
+  const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
   
   return (
     <>
@@ -72,7 +72,7 @@ function App() {
        cart={cart} 
        setCart={setCart}
         cartQuantity={cartQuantity}
-        totalBeforeTax={totalBeforeTax}
+        totalPrice={totalPrice}
         />} />
 
     <Route path='/orders' element={ <Orders />} />
