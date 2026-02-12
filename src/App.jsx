@@ -51,12 +51,13 @@ function App() {
  const handlePlaceOrder = ()=>{
   // Here you would typically send the order data to your backend server
   // For this example, we'll just clear the cart
-  setCart([])
-  const orderId = Math.random().toString(36).substring(2, 15)
-  console.log('Order ID:', orderId)
+
+  // const orderId = Math.random().toString(36).substring(2, 15)
+  // console.log('Order ID:', orderId)
   const orderId2 = crypto.randomUUID()
   console.log('Order ID 2:', orderId2)
-  alert('Order placed successfully!')
+  return orderId2;
+  
  }
 
  const cartQuantity = 
