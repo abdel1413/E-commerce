@@ -9,9 +9,11 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 
+
  
 function App() {
   const [cart,setCart] = useState([])
+  const[orderId, setOrderId] = useState(null)
 
   useEffect(()=> {
     fetch("http://localhost:3000/api/products")
@@ -56,8 +58,8 @@ function App() {
   // console.log('Order ID:', orderId)
   const orderId2 = crypto.randomUUID()
   console.log('Order ID 2:', orderId2)
-  return orderId2;
-  
+  setOrderId(orderId2)
+
  }
 
  const cartQuantity = 
@@ -89,7 +91,7 @@ function App() {
     <Orders 
     cart={cart} 
     totalPrice={totalPrice}
-    handlePlaceOrder={handlePlaceOrder}
+ orderId={orderId}
     
     />} 
     />

@@ -2,8 +2,8 @@ import { Link } from "react-router";
 import { Navbar } from "./Navbar";
 import { moneyFormatter } from "../moneyFormatter";
 
-export const Orders = ({cart,totalPrice, handPlaceOrder}) => {
-  console.log(' orders',handPlaceOrder )
+export const Orders = ({cart,totalPrice, orderId}) => {
+  console.log(' orders',orderId )
   return ( 
     <div className="main">
         <Navbar/>
@@ -24,7 +24,7 @@ export const Orders = ({cart,totalPrice, handPlaceOrder}) => {
              </div>
              <div className="order-header-right-section">
               <div className="order-header-label">Order ID:</div>
-              <div>{handPlaceOrder}</div>
+              <div>{orderId}</div>
             </div>
           </div>
             {cart.map((item)=> (
