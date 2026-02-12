@@ -15,7 +15,7 @@ export const HomePage = ({cart, cartQuantity, addToCart, }) => {
     const useDeb =  useDebounce(searchItem, 500)
     console.log('debounce',useDeb)
 
-  //use debounce to avoid filtering on every key stoke;
+  //use debounce to avoid filtering on every key stroke;
  useEffect(()=>{
   let timer = setTimeout(()=>{setDebounce(searchItem)},500)
   return ()=>clearTimeout(timer)

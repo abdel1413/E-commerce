@@ -75,7 +75,12 @@ function App() {
         totalPrice={totalPrice}
         />} />
 
-    <Route path='/orders' element={ <Orders />} />
+    <Route path='/orders' 
+    element={ 
+    <Orders 
+    cart={cart} 
+    totalPrice={totalPrice}
+    />} />
     <Route path='/tracking' element={<Tracking/>} />
   </Routes>
     

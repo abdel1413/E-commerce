@@ -5,10 +5,11 @@ import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 import { cartArray } from "../data/cartArray";
 import { deliverOptions } from "../data/deliverOptions";
+import { Link } from "react-router";
 
 
 
-
+ 
 cartArray
 
 
@@ -166,10 +167,11 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice}) => {
             <div>Order total:</div>
             <div className="payment-summary-money">${moneyFormatter(orderTotal)}</div>
           </div>
-
+            <Link to='/orders'>
           <button className="place-order-button button-primary w-full mt-4 py-3 px-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
             Place your order
           </button>
+          </Link>
      </div>
   </div>
  </div>
