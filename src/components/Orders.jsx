@@ -1,14 +1,13 @@
 import { Link } from "react-router";
 import { Navbar } from "./Navbar";
+import { moneyFormatter } from "../moneyFormatter";
 
 export const Orders = ({cart,totalPrice}) => {
-  console.log('orders cart', totalPrice)
-
+  console.log('cart in orders', )
   return ( 
     <div className="main">
         <Navbar/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
-
       <div className="orders-grid  ">
         <div className="order-container border border-gray-200 shadow-lg mb-5">
           <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
@@ -20,7 +19,7 @@ export const Orders = ({cart,totalPrice}) => {
 
               <div className="order-total">
                 <div className="order-header-label">Total:</div>
-                <div>$41.90</div>
+                <div>${moneyFormatter(totalPrice)}</div>
               </div>
              </div>
              <div className="order-header-right-section">
@@ -59,8 +58,6 @@ export const Orders = ({cart,totalPrice}) => {
         </div>
             ))
             }
-
-          
       </div>
     </div>
     </div>

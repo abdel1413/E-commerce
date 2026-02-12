@@ -29,9 +29,6 @@ function App() {
   },[])
 
   
-
-  
-
   const addToCart = (product)=>{
    
     setCart(prev => {
@@ -51,6 +48,16 @@ function App() {
    
  }
  
+ const handlePlaceOrder = ()=>{
+  // Here you would typically send the order data to your backend server
+  // For this example, we'll just clear the cart
+  setCart([])
+  const orderId = Math.random().toString(36).substring(2, 15)
+  console.log('Order ID:', orderId)
+  const orderId2 = crypto.randomUUID()
+  console.log('Order ID 2:', orderId2)
+  alert('Order placed successfully!')
+ }
 
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
@@ -73,6 +80,7 @@ function App() {
        setCart={setCart}
         cartQuantity={cartQuantity}
         totalPrice={totalPrice}
+        handlePlaceOrder={handlePlaceOrder}
         />} />
 
     <Route path='/orders' 
@@ -80,7 +88,10 @@ function App() {
     <Orders 
     cart={cart} 
     totalPrice={totalPrice}
-    />} />
+    handlePlaceOrder={handlePlaceOrder}
+    
+    />} 
+    />
     <Route path='/tracking' element={<Tracking/>} />
   </Routes>
     

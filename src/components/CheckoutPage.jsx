@@ -14,7 +14,7 @@ cartArray
 
 
 
-export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice}) => {
+export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice, handlePlaceOrder}) => {
  
     
   // const [input, setInput] = useState("")
@@ -168,7 +168,8 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice}) => {
             <div className="payment-summary-money">${moneyFormatter(orderTotal)}</div>
           </div>
             <Link to='/orders'>
-          <button className="place-order-button button-primary w-full mt-4 py-3 px-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
+          <button onClick={()=>handlePlaceOrder()}
+          className="place-order-button button-primary w-full mt-4 py-3 px-6 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded">
             Place your order
           </button>
           </Link>
