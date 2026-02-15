@@ -9,7 +9,7 @@ export const DropDown = () => {
             <select className="product-quantity-dropdown border border-gray-300 rounded-md p-2 m-2 focus:outline-none focus:ring-2 focus:ring-blue-500" value={1}
             >
              {[1, 2, 3, 4, 5].map((qty) => (
-               <option key={qty} value={qty}>
+               <option key={qty} value={qty} className="dropdown-option" onChange={() => console.log('selected', qty)}>
                  Qty: {qty}
                </option>
              ))}

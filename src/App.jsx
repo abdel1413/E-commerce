@@ -43,7 +43,6 @@ function App() {
       : item
      )
     }
-    console.log('deliver options', deliverOptions[0])
 
     return [...prev ,{...product, quantity: 1,deliveryOptionId: deliverOptions[0].id}]
   })

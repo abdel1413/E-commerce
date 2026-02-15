@@ -5,10 +5,12 @@ import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 import { cartArray } from "../data/cartArray";
 import { deliverOptions } from "../data/deliverOptions";
+
+
 import { Link } from "react-router";
 
 
-
+ 
  
 cartArray
 
@@ -16,7 +18,7 @@ cartArray
 
 export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice, handlePlaceOrder}) => {
  
-    
+
   // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -51,12 +53,19 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice, handlePlac
       
   }
   const shippingPrice = cart.reduce((acc, next) => acc + (next.shippingPrice || 0), 0)
-  console.log('shipping price', shippingPrice, totalPrice)
+
   const totalBeforeTax = (totalPrice + shippingPrice)
-  console.log('total bef',totalBeforeTax)
+ 
   const tax = ((totalPrice + shippingPrice)*0.1)
   const orderTotal =(totalBeforeTax + tax )
-  console.log('order total', orderTotal)
+
+  const estimatedDeliveryTimes = cart.map(item => {
+    const option = deliverOptions.find(option => option.id === item.deliveryOptionId)
+  
+    return option ? dayjs(option.estimatedDeliveryTimeMs).format("dddd, MMMM D") : "N/A"
+  })
+  console.log('estimated delivery times', estimatedDeliveryTimes)
+
   
   return (
     <>
@@ -66,12 +75,10 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice, handlePlac
       <div className="checkout-grid grid w-full grid-cols-3 md:grid-cols-3 gap-6 p-1">
         <div className="order-summary md:col-span-2">
        { cart.map(item => (
-          
           <div className="cart-item-container  w-800 bg-gray-100 border border-gray-300 px-4 mb-5 rounded-lg shadow: shadow-lg dark: text-black "
             key={item.id}>
             <div className="delivery-date text-xl text-blue-500 font-bold mb-2 mt-2 ">
-              Delivery date: Tuesday, June 21
-            
+              Delivery date: {estimatedDeliveryTimes[cart.indexOf(item)]}
             </div>
             <div className="cart-item-details-grid  flex gap-4 items-center  py-1 px-1" >
                 <img className="product-image w-32 h-32 object-cover rounded p-0 "
