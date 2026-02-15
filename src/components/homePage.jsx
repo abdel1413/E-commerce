@@ -8,12 +8,13 @@ import { moneyFormatter } from "../moneyFormatter";
 export const HomePage = ({cart, cartQuantity, addToCart, }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
+  const [dropdown,setDropDown]= useState(1)
 
  
  
   // using debounce hook for reusability  but not for this purpose 
     const useDeb =  useDebounce(searchItem, 500)
-    console.log('debounce',useDeb)
+    useDeb
 
   //use debounce to avoid filtering on every key stroke;
  useEffect(()=>{
@@ -21,14 +22,18 @@ export const HomePage = ({cart, cartQuantity, addToCart, }) => {
   return ()=>clearTimeout(timer)
  },[searchItem])
 
- console.log(debounce)
+ debounce
  
  const filtered = products.filter(product =>{
  return product.name.toLowerCase().includes(debounce.toLowerCase())
  })
  
-
+const selectedDropdown = (e)=>{
+  console.log('selected dropdown value', e.target.value)
+  setDropDown(Number(e.target.value))
+} 
  
+console.log('dropdown', dropdown)
 return (
     
   <>
@@ -60,7 +65,11 @@ return (
         <img className="ratings w-32 h-5 text-blue-500" src={`/images/ratings/rating-${product.rating.stars*10}.png`}/> <span>{product.rating.count}</span>
         </div>
            
-           <DropDown />
+           <DropDown
+           value={dropdown}
+            dropdownOptions={[1, 2, 3, 4, 5]}
+            selectedDropdown={selectedDropdown}
+            />
         <button
         onClick={()=>addToCart(product)}
          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition-colors duration-300">

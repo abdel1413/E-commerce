@@ -64,7 +64,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice, handlePlac
   
     return option ? dayjs(option.estimatedDeliveryTimeMs).format("dddd, MMMM D") : "N/A"
   })
-  console.log('estimated delivery times', estimatedDeliveryTimes)
+
 
   
   return (
