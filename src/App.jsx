@@ -14,6 +14,7 @@ import { deliverOptions } from './data/deliverOptions'
 function App() {
   const [cart,setCart] = useState([])
   const[orderId, setOrderId] = useState(null)
+  const [quantity, setQuantity] = useState({})
 
   useEffect(()=> {
     fetch("http://localhost:3000/api/products")
@@ -34,9 +35,8 @@ function App() {
   const addToCart = (product)=>{
    
     setCart(prev => {
-
- 
     const existingProduct = prev.find(item => item.id ===product.id)
+
     if(existingProduct){
      return  prev.map(item => item.id === product.id 
       ? {...item, quantity:item.quantity+1, }
@@ -61,6 +61,14 @@ function App() {
 
  }
 
+ const handleQuantity = (productId, newQuantity)=>{
+  setQuantity(prev => ({...prev, [productId]: newQuantity}))
+  setCart(prev => prev.map(item =>
+    item.id === productId
+    ? {...item, quantity: newQuantity}
+    : item
+    ))
+ }  
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
   const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
@@ -70,10 +78,12 @@ function App() {
     
   <Routes>
     <Route index
-     element={ <HomePage 
+     element={ 
+     <HomePage 
     cart={cart} 
     addToCart={addToCart} 
-    cartQuantity={cartQuantity}/>}
+    handleQuantity={handleQuantity}
+    quantity={quantity}/>}
      /> 
     <Route path='/checkout' 
     element={

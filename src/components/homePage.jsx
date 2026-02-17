@@ -5,10 +5,12 @@ import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
 import { moneyFormatter } from "../moneyFormatter";
 
-export const HomePage = ({cart, cartQuantity, addToCart, }) => {
+export const HomePage = ({cart, handleQuantity, addToCart,quantity }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
-  const [dropdown,setDropDown]= useState(1)
+ 
+ 
+  // const [dropdown,setDropDown]= useState(1)
 
  
  
@@ -28,21 +30,28 @@ export const HomePage = ({cart, cartQuantity, addToCart, }) => {
  return product.name.toLowerCase().includes(debounce.toLowerCase())
  })
  
-const selectedDropdown = (e)=>{
-  console.log('selected dropdown value', e.target.value)
-  setDropDown(Number(e.target.value))
+const selectedDropdown = ( item, newQuantity)=>{
+  console.log('selected dropdown', item, newQuantity)
+  handleQuantity(item.id, newQuantity)
+    
 } 
  
-console.log('dropdown', dropdown)
+
 return (
     
   <>
-  <Navbar  searchItem={searchItem} setSearchItem={setSearchItem} cart={cart}  cartQuantity={cartQuantity}/>
+  <Navbar 
+   searchItem={searchItem} 
+   setSearchItem={setSearchItem} 
+   cart={cart} 
+   quantity={quantity}
+    handleQuantity={handleQuantity}/>
+
      {  filtered.length ===0 &&
       <div className=" min-h-screen w-full grid grid-cols-1 flex items-center justify-center">
          <h1 className="text-red-500 text-xl text-center">No product found!</h1>
       </div>
-}
+     }
     <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-4"
 >
       
@@ -64,11 +73,11 @@ return (
         
         <img className="ratings w-32 h-5 text-blue-500" src={`/images/ratings/rating-${product.rating.stars*10}.png`}/> <span>{product.rating.count}</span>
         </div>
-           
+         
            <DropDown
-           value={dropdown}
             dropdownOptions={[1, 2, 3, 4, 5]}
-            selectedDropdown={selectedDropdown}
+              value={quantity[product.id] || 1} 
+            onChange={(value)=>selectedDropdown(product,value)}
             />
         <button
         onClick={()=>addToCart(product)}

@@ -16,9 +16,9 @@ cartArray
 
 
 
-export const CheckoutPage = ({cart,setCart, cartQuantity, totalPrice, handlePlaceOrder}) => {
+export const CheckoutPage = ({cart,setCart, cartQuantity, quantity, totalPrice, handlePlaceOrder}) => {
  
-
+ console.log('quantity', quantity)
   // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
