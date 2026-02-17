@@ -5,13 +5,9 @@ import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
 import { moneyFormatter } from "../moneyFormatter";
 
-export const HomePage = ({cart, handleQuantity, addToCart,quantity }) => {
+export const HomePage = ({cart, handleQuantity, addToCart,quantity, cartQuantity }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
- 
- 
-  // const [dropdown,setDropDown]= useState(1)
-
  
  
   // using debounce hook for reusability  but not for this purpose 
@@ -31,21 +27,20 @@ export const HomePage = ({cart, handleQuantity, addToCart,quantity }) => {
  })
  
 const selectedDropdown = ( item, newQuantity)=>{
-  console.log('selected dropdown', item, newQuantity)
-  handleQuantity(item.id, newQuantity)
-    
+  console.log('item', item, 'newQuantity', newQuantity)
+  handleQuantity(item.id, Number(newQuantity))    
 } 
  
 
-return (
-    
+return ( 
   <>
   <Navbar 
    searchItem={searchItem} 
    setSearchItem={setSearchItem} 
    cart={cart} 
+   cartQuantity={cartQuantity}
    quantity={quantity}
-    handleQuantity={handleQuantity}/>
+   />
 
      {  filtered.length ===0 &&
       <div className=" min-h-screen w-full grid grid-cols-1 flex items-center justify-center">
@@ -85,12 +80,10 @@ return (
           Add to Cart
         </button>
       </div>
-     
       ))  }
     </div>
-    {/* <Footer /> */}
     </>
-// </div>
+
     
   );
 };

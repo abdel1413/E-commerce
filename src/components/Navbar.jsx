@@ -6,13 +6,14 @@ import { Input } from './Input';
 
 
 
-export const Navbar = ({searchItem,setSearchItem, cart,cartQuantity}) => {
- 
-
-  const quantity = cart? cart.reduce((acc,next)=> acc + next.quantity,0)
-                       : 0;
-                       
+export const Navbar = ({searchItem,setSearchItem,  quantity, cartQuantity}) => {
+  
+  console.log('cart qu in navbar', cartQuantity)
+  // const quantity = cart? cart.reduce((acc,next)=> acc + next.quantity,0)
+  //                      : 0;
+      console.log('quantity in navbar', quantity)                  
  quantity
+
   return (
     <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-5 py-2 w-full ">
 

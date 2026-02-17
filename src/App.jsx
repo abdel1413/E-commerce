@@ -62,6 +62,7 @@ function App() {
  }
 
  const handleQuantity = (productId, newQuantity)=>{
+  console.log('handle quantity', productId, newQuantity)
   setQuantity(prev => ({...prev, [productId]: newQuantity}))
   setCart(prev => prev.map(item =>
     item.id === productId
@@ -71,6 +72,7 @@ function App() {
  }  
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
+
   const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
   
   return (
@@ -83,6 +85,7 @@ function App() {
     cart={cart} 
     addToCart={addToCart} 
     handleQuantity={handleQuantity}
+    cartQuantity={cartQuantity}
     quantity={quantity}/>}
      /> 
     <Route path='/checkout' 
@@ -100,7 +103,7 @@ function App() {
     <Orders 
     cart={cart} 
     totalPrice={totalPrice}
- orderId={orderId}
+     orderId={orderId}
     
     />} 
     />
