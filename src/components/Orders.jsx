@@ -9,9 +9,9 @@ export const Orders = ({cart,totalPrice, orderId}) => {
         <Navbar/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
       <div className="orders-grid  ">
-        <div className="order-container border border-gray-200 shadow-lg mb-5">
+        <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">
           <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
-            <div className="order-header-left-section flex gap-4 ">
+            <div className="order-header-left-section flex gap-4 border border-gray-400 p-2 rounded">
               <div className="order-date">
                 <div className="order-header-label">Order Placed:</div>
                 <div>June 10</div>
@@ -29,7 +29,7 @@ export const Orders = ({cart,totalPrice, orderId}) => {
           </div>
             {cart.map((item)=> (
           <div key={item.id}
-           className=" flex w-800 justify-between item-center px-2 py-6 ">
+           className=" flex w-800 justify-between item-center px-2 py-6 border-b border-gray-400 rounded-lg">
             <div key={item.id} className="order-product-item flex gap-4 mb-4">
               <div className="product-image-container w-32 h-32">
                <img src={item.image}/>
