@@ -33,18 +33,24 @@ function App() {
 
   
   const addToCart = (product)=>{
+    const selectedQuantity = quantity[product.id] || 1  
+    console.log('selected quantity', selectedQuantity)
    
     setCart(prev => {
     const existingProduct = prev.find(item => item.id ===product.id)
 
     if(existingProduct){
      return  prev.map(item => item.id === product.id 
-      ? {...item, quantity:item.quantity+1, }
+      ? {...item, quantity:item.selectedQuantity, }
       : item
      )
     }
 
-    return [...prev ,{...product, quantity: 1,deliveryOptionId: deliverOptions[0].id}]
+    return [
+      ...prev ,
+      {...product, 
+        quantity: selectedQuantity
+        ,deliveryOptionId: deliverOptions[0].id}]
   })
    
  }
@@ -64,14 +70,16 @@ function App() {
  const handleQuantity = (productId, newQuantity)=>{
   console.log('handle quantity', productId, newQuantity)
   setQuantity(prev => ({...prev, [productId]: newQuantity}))
-  setCart(prev => prev.map(item =>
-    item.id === productId
-    ? {...item, quantity: newQuantity}
-    : item
-    ))
+  // setCart(prev => prev.map(item =>
+  //   item.id === productId
+  //   ? {...item, quantity:Number(newQuantity)}
+  //   : item
+  //   ))
  }  
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
+   
+   console.log('cart in app', cart)
 
   const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
   

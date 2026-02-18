@@ -6,12 +6,12 @@ import { Input } from './Input';
 
 
 
-export const Navbar = ({searchItem,setSearchItem,  quantity, cartQuantity}) => {
+export const Navbar = ({searchItem,setSearchItem, cart , quantity, cartQuantity}) => {
   
-  console.log('cart qu in navbar', cartQuantity)
+cart 
   // const quantity = cart? cart.reduce((acc,next)=> acc + next.quantity,0)
   //                      : 0;
-      console.log('quantity in navbar', quantity)                  
+      console.log(' cart quantity in navbar', cartQuantity)                  
  quantity
 
   return (

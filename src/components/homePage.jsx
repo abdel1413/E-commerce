@@ -28,7 +28,8 @@ export const HomePage = ({cart, handleQuantity, addToCart,quantity, cartQuantity
  
 const selectedDropdown = ( item, newQuantity)=>{
   console.log('item', item, 'newQuantity', newQuantity)
-  handleQuantity(item.id, Number(newQuantity))    
+  handleQuantity(item.id, Number(newQuantity)) 
+     
 } 
  
 
