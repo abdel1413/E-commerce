@@ -11,7 +11,7 @@ export const Navbar = ({searchItem,setSearchItem, cart , quantity, cartQuantity}
 cart 
   // const quantity = cart? cart.reduce((acc,next)=> acc + next.quantity,0)
   //                      : 0;
-      console.log(' cart quantity in navbar', cartQuantity)                  
+                     
  quantity
 
   return (
@@ -25,7 +25,6 @@ cart
             <span className="returns-text">Returns</span>
             <span className="orders-text">& Orders</span>
           </Link>
-
 
           <div  className="flex border border-blue-500 hover:border-gray-200 transition-colors duration-300 p-1">
           
