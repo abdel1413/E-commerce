@@ -123,7 +123,12 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
                     className="update-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
                       Update
                     </span>
-                    <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
+                    <span 
+                    className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600"
+                    onClick={()=>{
+                      setCart(prev => prev.filter(cartItem => cartItem.id !== item.id))
+                    }}
+                    >
                       Delete
                     </span>
                 </div> 
@@ -136,6 +141,7 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
                 </div>
                 
                  {deliverOptions.map(option =>{
+                                   console.log('es', option.estimatedDeliveryTimeMs)
                     const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
                    
                    return( <div key={option.id}
@@ -150,7 +156,9 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
                   <div>
                     <div className="delivery-option-date text-bold text-blue-500 text-lg">
                       {/* Monday, June 13 */}
-                      {dayjs(option.estimatedTimeMs).format("dddd, MMMM, D")}
+                       {/* {dayjs(option.estimatedDeliveryTimeMs).format("dddd, MMMM D")} */}
+                     {dayjs().add(option.deliveryDays, "day").format("dddd, MMMM D")
+}
                     </div>
                     <div className="delivery-option-price" >
 
