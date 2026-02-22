@@ -15,6 +15,7 @@ function App() {
   const [cart,setCart] = useState([])
   const[orderId, setOrderId] = useState(null)
   const [quantity, setQuantity] = useState({})
+  
 
   useEffect(()=> {
     fetch("http://localhost:3000/api/products")
@@ -69,11 +70,25 @@ function App() {
  const handleQuantity = (productId, newQuantity)=>{
   setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))
   setCart(prev => prev.map(item =>
+    console.log('item id', item.id, 'productId', productId, 'newQuantity', newQuantity) ||  
     item.id === productId
     ? {...item, quantity:Number(newQuantity)}
     : item
     ))
  }  
+
+ const updateQuantity = (productId, newQuantity)=>{
+  setCart(prev => prev.map(item =>{
+    console.log('item id', item.id, 'productId', productId, 'newQuantity', newQuantity)
+   
+    return item.id === productId
+    ? {...item, quantity:Number(newQuantity)}
+    : item  
+
+  }
+   
+    ))
+ }
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
    
@@ -102,6 +117,9 @@ function App() {
         cartQuantity={cartQuantity}
         totalPrice={totalPrice}
         handlePlaceOrder={handlePlaceOrder}
+        handleQuantity={handleQuantity}
+        setQuantity={setQuantity}
+        updateQuantity={updateQuantity}
         />} />
 
     <Route path='/orders' 

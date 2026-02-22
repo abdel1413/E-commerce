@@ -16,9 +16,18 @@ cartArray
 
 
 
-export const CheckoutPage = ({cart,setCart, cartQuantity, quantity, totalPrice, handlePlaceOrder}) => {
+export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, totalPrice, handlePlaceOrder}) => {
+  const [editId, setEditId] = useState(null)
+  const [inputValue, setInputValue] = useState('')
  
- console.log('quantity', quantity)
+ 
+  const handleEdit = (item)=>{
+    setEditId(item.id)
+    setInputValue(item.quantity)
+  console.log('edit quantity', editId)  
+  
+  } 
+
   // const [input, setInput] = useState("")
    const [delivery,setDelivery] = useState([])
    useEffect(()=>{
@@ -34,6 +43,7 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, quantity, totalPrice, 
   // const handleDelivery = ()=>{
 
   // }
+  
  
    
   const handleDeliveryChange = (productId, optionId,priceCents)=>{ 
@@ -91,17 +101,47 @@ export const CheckoutPage = ({cart,setCart, cartQuantity, quantity, totalPrice, 
                   
                        ${moneyFormatter(item.priceCents)}
                  </div>
-                <div className="product-quantity flex items-center gap-2">
-                  <span className="flex">
-                    Quantity: <span className="quantity-label">{item.quantity}</span>
-                  </span>
-                  <span className="update-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
-                    Update
-                  </span>
-                  <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
-                    Delete
-                  </span>
-                </div>
+                 {editId === item.id ? (
+                  <>
+                    <input
+                      type="number"
+                      value={inputValue}
+                      onChange={(e) => setInputValue(e.target.value)}
+                      className="quantity-input border border-gray-400 rounded px-2 py-1 w-20"
+                    />
+                    <button
+                      onClick={() => {
+                        handleQUantity(item.id, inputValue)
+                        setEditId(null)
+                      }}
+                      className="update-button button-primary bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">
+                      Save
+                    </button>
+                     <button
+                      onClick={() => {
+                        handleQUantity(item.id, 0)
+                        setEditId(null)
+                      }}
+                      className="delete-button button-primary bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded">
+                      Cancel
+                    </button> 
+                  </>
+                 ):
+                 <div className="product-quantity flex items-center gap-2">
+                    <span className="flex">
+                      Quantity: <span className="quantity-label">{item.quantity}</span>
+                    </span>
+                    <span
+                    onClick={()=>handleEdit(item)}
+                    className="update-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
+                      Update
+                    </span>
+                    <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
+                      Delete
+                    </span>
+                </div> }
+
+                
                   </div>
                 
               <div className=" ml-5border border-blue-500 p-2">

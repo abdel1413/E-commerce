@@ -8,7 +8,7 @@ import { moneyFormatter } from "../moneyFormatter";
 export const HomePage = ({cart, handleQuantity, addToCart,quantity, cartQuantity }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
- 
+
  
   // using debounce hook for reusability  but not for this purpose 
     const useDeb =  useDebounce(searchItem, 500)
@@ -27,9 +27,8 @@ export const HomePage = ({cart, handleQuantity, addToCart,quantity, cartQuantity
  })
  
 const selectedDropdown = ( item, newQuantity)=>{
-  console.log('item', item, 'newQuantity', newQuantity)
   handleQuantity(item.id, Number(newQuantity)) 
-     
+
 } 
  
 
