@@ -6,30 +6,24 @@ import dayjs from "dayjs";
 import { cartArray } from "../data/cartArray";
 import { deliverOptions } from "../data/deliverOptions";
 
-
 import { Link } from "react-router";
 
-
- 
- 
 cartArray
 
-
-
-export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, totalPrice, handlePlaceOrder}) => {
+export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, totalPrice, handlePlaceOrder}) => {
   const [editId, setEditId] = useState(null)
   const [inputValue, setInputValue] = useState('')
+  const [delivery,setDelivery] = useState([])
  
  
   const handleEdit = (item)=>{
     setEditId(item.id)
     setInputValue(item.quantity)
-  console.log('edit quantity', editId)  
+  console.log('edit quantity', editId, inputValue )  
   
   } 
 
   // const [input, setInput] = useState("")
-   const [delivery,setDelivery] = useState([])
    useEffect(()=>{
      axios.get('http://localhost:3000/api/delivery-options?expand=estimatedDeliveryTime').then( response =>
       setDelivery(response.data)
@@ -38,13 +32,8 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, total
    },[])
   delivery
     //const shippingPrice = useRef(0)
-
-
   // const handleDelivery = ()=>{
-
   // }
-  
- 
    
   const handleDeliveryChange = (productId, optionId,priceCents)=>{ 
     
@@ -75,8 +64,6 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, total
     return option ? dayjs(option.estimatedDeliveryTimeMs).format("dddd, MMMM D") : "N/A"
   })
 
-
-  
   return (
     <>
     <Navbar />
@@ -102,30 +89,30 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, total
                        ${moneyFormatter(item.priceCents)}
                  </div>
                  {editId === item.id ? (
-                  <>
+                  <div className="product-quantity flex items-center">
                     <input
                       type="number"
                       value={inputValue}
                       onChange={(e) => setInputValue(e.target.value)}
-                      className="quantity-input border border-gray-400 rounded px-2 py-1 w-20"
+                      className="quantity-input border border-gray-400 rounded px-1 py-1 w-20 mr-2"
                     />
-                    <button
+                    <span
                       onClick={() => {
-                        handleQUantity(item.id, inputValue)
+                        handleQuantity(item.id, inputValue)
                         setEditId(null)
                       }}
-                      className="update-button button-primary bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded">
+                      className="update-button button-primary bg-blue-500 hover:bg-blue-600 text-white font-semibold px-1 py-1 rounded mr-2 cursor-pointer">
                       Save
-                    </button>
-                     <button
+                    </span>
+                     <span
                       onClick={() => {
-                        handleQUantity(item.id, 0)
+                        handleQuantity(item.id, item.quantity)
                         setEditId(null)
                       }}
-                      className="delete-button button-primary bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded">
+                      className="delete-button button-primary bg-red-500 hover:bg-red-600 text-white font-semibold px-1 py-1 rounded cursor-pointer">
                       Cancel
-                    </button> 
-                  </>
+                    </span> 
+                  </div>
                  ):
                  <div className="product-quantity flex items-center gap-2">
                     <span className="flex">
@@ -139,9 +126,8 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, total
                     <span className="delete-quantity-link link-primary cursor-pointer hover:border-b border-red-400 hover:text-red-600">
                       Delete
                     </span>
-                </div> }
-
-                
+                </div> 
+                }
                   </div>
                 
               <div className=" ml-5border border-blue-500 p-2">
@@ -150,7 +136,6 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQUantity, total
                 </div>
                 
                  {deliverOptions.map(option =>{
- 
                     const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
                    
                    return( <div key={option.id}

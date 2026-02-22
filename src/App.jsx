@@ -69,6 +69,7 @@ function App() {
 
  const handleQuantity = (productId, newQuantity)=>{
   setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))
+  
   setCart(prev => prev.map(item =>
     console.log('item id', item.id, 'productId', productId, 'newQuantity', newQuantity) ||  
     item.id === productId
