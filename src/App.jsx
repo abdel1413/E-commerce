@@ -14,6 +14,7 @@ import { deliverOptions } from './data/deliverOptions'
 function App() {
   const [cart,setCart] = useState([])
   const[orderId, setOrderId] = useState(null)
+  const [orders, setOrders] = useState([])
   const [quantity, setQuantity] = useState({})
   
 
@@ -64,12 +65,21 @@ function App() {
   const orderId2 = crypto.randomUUID()
   console.log('Order ID 2:', orderId2)
   setOrderId(orderId2)
+  const newOrder = {
+    id: orderId2,
+    items: cart,
+    date: new Date(),
+    
 
- }
+ }  
+ setOrders(prev => [...prev, newOrder])
+ setCart([])
+ setQuantity({})
+ }  
 
  const handleQuantity = (productId, newQuantity)=>{
   setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))
-  
+
   setCart(prev => prev.map(item =>
     console.log('item id', item.id, 'productId', productId, 'newQuantity', newQuantity) ||  
     item.id === productId
@@ -129,6 +139,9 @@ function App() {
     cart={cart} 
     totalPrice={totalPrice}
      orderId={orderId}
+     addToCart={addToCart}
+     orders={orders}
+     setOrders={setOrders}
     
     />} 
     />

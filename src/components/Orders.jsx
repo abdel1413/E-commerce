@@ -2,8 +2,8 @@ import { Link } from "react-router";
 import { Navbar } from "./Navbar";
 import { moneyFormatter } from "../moneyFormatter";
 
-export const Orders = ({cart,totalPrice, orderId}) => {
-  console.log(' orders',orderId )
+export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
+  console.log(' orders',orders )
   return ( 
     <div className="main">
         <Navbar/>
@@ -44,7 +44,10 @@ export const Orders = ({cart,totalPrice, orderId}) => {
                    <div className="product-quantity">
                       Quantity: {item.quantity}
                   </div>
-                <button className="flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl">
+                <button 
+                className="flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl"
+                onClick={()=>addToCart(item)}
+                >
                   <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
                   <span className="buy-again-message">Buy it again</span>
                </button>
