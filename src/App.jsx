@@ -73,9 +73,8 @@ function App() {
 
  }  
  setOrders(prev => [...prev, newOrder])
- setCart([])
- setQuantity({})
- }  
+  // setCart([])
+ }    
 
  const handleQuantity = (productId, newQuantity)=>{
   setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))

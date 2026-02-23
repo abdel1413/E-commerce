@@ -3,7 +3,8 @@ import { Navbar } from "./Navbar";
 import { moneyFormatter } from "../moneyFormatter";
 
 export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
-  console.log(' orders',orders )
+  console.log(' orders',orders[0].items )
+  console.log('cart', cart)
   return ( 
     <div className="main">
         <Navbar/>
@@ -27,7 +28,7 @@ export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
               <div>{orderId}</div>
             </div>
           </div>
-            {cart.map((item)=> (
+            {orders[0].items.map((item)=> (
           <div key={item.id}
            className=" flex w-800 justify-between item-center px-2 py-6 border-b border-gray-400 rounded-lg">
             <div key={item.id} className="order-product-item flex gap-4 mb-4">
