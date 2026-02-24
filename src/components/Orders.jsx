@@ -1,9 +1,10 @@
 import { Link } from "react-router";
 import { Navbar } from "./Navbar";
 import { moneyFormatter } from "../moneyFormatter";
+import dayjs from "dayjs";
 
 export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
-  console.log(' orders',orders[0].items )
+  
   console.log('cart', cart)
   return ( 
     <div className="main">
@@ -15,7 +16,7 @@ export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
             <div className="order-header-left-section flex gap-4 border border-gray-400 p-2 rounded">
               <div className="order-date">
                 <div className="order-header-label">Order Placed:</div>
-                <div>June 10</div>
+                <div>{dayjs(new Date()).format("dddd,MMMM, D")}</div>
               </div>
 
               <div className="order-total">
@@ -47,7 +48,9 @@ export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
                   </div>
                 <button 
                 className="flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl"
-                onClick={()=>addToCart(item)}
+                onClick={()=>{
+                  console.log('item to add to cart', item)
+                  addToCart(item)}}
                 >
                   <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
                   <span className="buy-again-message">Buy it again</span>

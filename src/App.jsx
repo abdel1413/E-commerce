@@ -8,6 +8,8 @@ import { Tracking } from './components/Tracking'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
+import dayjs from 'dayjs'
+
 
 
  
@@ -63,24 +65,26 @@ function App() {
   // const orderId = Math.random().toString(36).substring(2, 15)
   // console.log('Order ID:', orderId)
   const orderId2 = crypto.randomUUID()
-  console.log('Order ID 2:', orderId2)
   setOrderId(orderId2)
   const newOrder = {
     id: orderId2,
     items: cart,
     date: new Date(),
+    orderDate: dayjs().valueOf(),
+    estimatedDeliveryTime: dayjs().add(7, 'day').valueOf(),
+    status: 'Processing'
     
 
  }  
  setOrders(prev => [...prev, newOrder])
-  // setCart([])
+   setCart([])
+   setQuantity({})
  }    
 
  const handleQuantity = (productId, newQuantity)=>{
   setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))
 
-  setCart(prev => prev.map(item =>
-    console.log('item id', item.id, 'productId', productId, 'newQuantity', newQuantity) ||  
+  setCart(prev => prev.map(item => 
     item.id === productId
     ? {...item, quantity:Number(newQuantity)}
     : item
@@ -89,8 +93,7 @@ function App() {
 
  const updateQuantity = (productId, newQuantity)=>{
   setCart(prev => prev.map(item =>{
-    console.log('item id', item.id, 'productId', productId, 'newQuantity', newQuantity)
-   
+  
     return item.id === productId
     ? {...item, quantity:Number(newQuantity)}
     : item  
@@ -101,9 +104,7 @@ function App() {
  }
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
-   
   
-
   const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
   
   return (
