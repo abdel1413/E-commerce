@@ -1,12 +1,18 @@
+
 import { Link, useParams } from "react-router"
 
 export const Tracking =({orders})=>{
-  const orderId = useParams().orderId
+  const orderId = useParams()
+
 
   console.log('tracking orders', orders)
   console.log('tracking orderId', orderId)
 
+   const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
 
+   const order = savedOrders.find(order => order.id === orderId.id)
+
+   console.log('order', order)
     return (
    
     <div>

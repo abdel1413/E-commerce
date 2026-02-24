@@ -6,6 +6,10 @@ import dayjs from "dayjs";
 export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
   cart 
 
+const savedOrders = JSON.parse(localStorage.getItem("orders")) || [] 
+
+localStorage.setItem("orders", JSON.stringify([...savedOrders, ...orders])) 
+   
   return ( 
     <div className="main">
         <Navbar/>
