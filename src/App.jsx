@@ -1,6 +1,6 @@
 import { Navbar } from './components/Navbar'
 import './App.css'
-import { Route, Routes } from 'react-router'
+import { Route, Routes, useNavigate } from 'react-router'
 import { CheckoutPage } from './components/CheckoutPage'
 import { Orders } from './components/Orders'
 import { HomePage } from './components/homePage'
@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 import dayjs from 'dayjs'
-import { Navigate } from 'react-router'
+
 
 
 
@@ -67,6 +67,8 @@ function App() {
   // console.log('Order ID:', orderId)
   const orderId2 = crypto.randomUUID()
   setOrderId(orderId2)
+ 
+  const navigate =  useNavigate
   const newOrder = {
     id: orderId2,
     items: cart,
@@ -78,8 +80,7 @@ function App() {
 
  }  
  setOrders(prev => [...prev, newOrder])
-   
-     Navigate(`/tracking/${orderId2}`);
+     navigate(`/tracking/${orderId2}`);
    setCart([])
    setQuantity({})
  }    
@@ -148,7 +149,7 @@ function App() {
     
     />} 
     />
-    <Route path='/tracking:orderId' element={<Tracking orders={orders}/>} />
+    <Route path='/tracking:id' element={<Tracking orders={orders}/>} />
   </Routes>
     
     </>
