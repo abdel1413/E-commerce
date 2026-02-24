@@ -1,6 +1,12 @@
-import { Link } from "react-router"
+import { Link, useParams } from "react-router"
 
-export const Tracking =()=>{
+export const Tracking =({orders})=>{
+  const orderId = useParams().orderId
+
+  console.log('tracking orders', orders)
+  console.log('tracking orderId', orderId)
+
+
     return (
    
     <div>

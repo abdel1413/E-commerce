@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 import dayjs from 'dayjs'
+import { Navigate } from 'react-router'
 
 
 
@@ -77,6 +78,8 @@ function App() {
 
  }  
  setOrders(prev => [...prev, newOrder])
+   
+     Navigate(`/tracking/${orderId2}`);
    setCart([])
    setQuantity({})
  }    
@@ -145,7 +148,7 @@ function App() {
     
     />} 
     />
-    <Route path='/tracking' element={<Tracking/>} />
+    <Route path='/tracking:orderId' element={<Tracking orders={orders}/>} />
   </Routes>
     
     </>
