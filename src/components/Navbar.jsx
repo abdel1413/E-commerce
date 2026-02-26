@@ -13,6 +13,7 @@ cart
   //                      : 0;
                      
  quantity
+console.log( localStorage.getItem("cartQuantity"))
 
   return (
     <nav className=" bg-blue-500 shadow-md navbar flex text-white  px-5 py-2 w-full ">

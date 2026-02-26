@@ -9,6 +9,7 @@ export const HomePage = ({cart, handleQuantity, addToCart,quantity, cartQuantity
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
 
+
  
   // using debounce hook for reusability  but not for this purpose 
     const useDeb =  useDebounce(searchItem, 500)

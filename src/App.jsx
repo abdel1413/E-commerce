@@ -108,6 +108,7 @@ function App() {
  }
  const cartQuantity = 
    cart.reduce((acc, next )=> acc + next.quantity, 0)
+   localStorage.setItem("cart", JSON.stringify(cart))
   
   const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
   
@@ -149,7 +150,11 @@ function App() {
     
     />} 
     />
-    <Route path='/tracking:id' element={<Tracking orders={orders}/>} />
+    <Route path='/tracking:id' 
+    element={
+    <Tracking orders={orders}
+    />}
+     />
   </Routes>
     
     </>
