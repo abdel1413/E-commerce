@@ -19,7 +19,7 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
   const handleEdit = (item)=>{
     setEditId(item.id)
     setInputValue(item.quantity)
-  console.log('edit quantity', editId, inputValue )  
+ 
   
   } 
 
