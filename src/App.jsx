@@ -15,10 +15,17 @@ import dayjs from 'dayjs'
 
  
 function App() {
-  const [cart,setCart] = useState([])
+  const [cart,setCart] = useState(() => {
+    const savedCart = localStorage.getItem('cart')
+    return savedCart ? JSON.parse(savedCart) : []
+  })
   const[orderId, setOrderId] = useState(null)
   const [orders, setOrders] = useState([])
-  const [quantity, setQuantity] = useState({})
+  
+  const [quantity, setQuantity] = useState(() => {
+    const savedQuantities = localStorage.getItem('quantity')
+    return savedQuantities ? JSON.parse(savedQuantities) : {}
+  })
   
 
   useEffect(()=> {
@@ -36,7 +43,16 @@ function App() {
     
   },[])
 
-  
+  // Persist cart to localStorage whenever it changes
+  useEffect(()=>{
+    localStorage.setItem('cart', JSON.stringify(cart))
+  },[cart]) 
+
+  // Persist quantities to localStorage whenever they change
+  useEffect(()=>{
+    localStorage.setItem('quantity', JSON.stringify(quantity))
+  },[quantity])
+
   const addToCart = (product)=>{
     const selectedQuantity = quantity[product.id] || 1  
     
@@ -59,6 +75,7 @@ function App() {
    
  }
  
+ const navigate =  useNavigate()
  const handlePlaceOrder = ()=>{
   // Here you would typically send the order data to your backend server
   // For this example, we'll just clear the cart
@@ -68,7 +85,7 @@ function App() {
   const orderId2 = crypto.randomUUID()
   setOrderId(orderId2)
  
-  const navigate =  useNavigate
+  
   const newOrder = {
     id: orderId2,
     items: cart,
