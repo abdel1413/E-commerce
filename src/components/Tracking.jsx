@@ -1,18 +1,30 @@
 
+import dayjs from "dayjs"
 import { Link, useParams } from "react-router"
 
-export const Tracking =({orders})=>{
+
+export const Tracking =({orders })=>{
+  console.log('orders in tracking page', orders)
+ 
   const orderId = useParams()
+ 
+ 
+   //const trackingOrder = orders.map( order => console.log(order.items))
+  
+
+    const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
+   
+
+    let trackingOrder = savedOrders[0].items.find(item => item.id ===(orderId.id) ) 
+    console.log('tracking order', trackingOrder)
+    const {name, image, quantity} = trackingOrder
+
+    const deliveryDate = (savedOrders.map(order => order.estimatedDeliveryTime))
+   const formattedDeliveryDate = dayjs(deliveryDate[0]).format("dddd, MMMM D")
 
 
-  console.log('tracking orders', orders)
-  console.log('tracking orderId', orderId)
+   
 
-   const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
-
-   const order = savedOrders.find(order => order.id === orderId.id)
-
-   console.log('order', order)
     return (
    
     <div>
@@ -23,19 +35,22 @@ export const Tracking =({orders})=>{
         </Link>
 
         <div className="delivery-date text-xl text-bold-500 ">
-          Arriving on Monday, June 13
+          Arriving on {formattedDeliveryDate}
         </div>
 
         <div className="product-info">
-          Black and Gray Athletic Cotton Socks - 6 Pairs
+          
+         {name && <div className="product-name">{name}</div>}
+          
         </div>
 
         <div className="product-info">
-          Quantity: 1
+          Quantity: {quantity || 1}
         </div>
 
-        <img className="product-image w-32 h-32 m-5" 
-        src="images/products/athletic-cotton-socks-6-pairs.jpg"/>
+        <img className="product-image w-32 h-32 object-cover rounded p-0 "
+        src={image} alt={name}  />
+        
 
         <div className="progress-labels-container flex justify-between">
           <div className="progress-label">

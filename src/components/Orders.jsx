@@ -6,9 +6,9 @@ import dayjs from "dayjs";
 export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
   cart 
 
-const savedOrders = JSON.parse(localStorage.getItem("orders")) || [] 
 
-localStorage.setItem("orders", JSON.stringify([...savedOrders, ...orders])) 
+
+
    
   return ( 
     <div className="main">
@@ -34,6 +34,7 @@ localStorage.setItem("orders", JSON.stringify([...savedOrders, ...orders]))
             </div>
           </div>
             {orders[0].items.map((item)=> (
+              
           <div key={item.id}
            className=" flex w-800 justify-between item-center px-2 py-6 border-b border-gray-400 rounded-lg">
             <div key={item.id} className="order-product-item flex gap-4 mb-4">
@@ -61,7 +62,7 @@ localStorage.setItem("orders", JSON.stringify([...savedOrders, ...orders]))
                </button>
             </div>
           </div>
-          <Link to="/tracking" className=" w-25 px-4">
+          <Link to={`/tracking/${item.id}`} className=" w-25 px-4">
                 <button className=" bg-white hover:bg-gray-100 rounded-xl  shadow-md hover: shadow-xl  transition  duration-300 w-25 px-4 py-2  ">
                   Track package
                 </button>

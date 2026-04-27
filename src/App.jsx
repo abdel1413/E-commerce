@@ -20,7 +20,11 @@ function App() {
     return savedCart ? JSON.parse(savedCart) : []
   })
   const[orderId, setOrderId] = useState(null)
-  const [orders, setOrders] = useState([])
+
+  const [orders, setOrders] = useState(() => { 
+    const savedOrders = localStorage.getItem('orders')
+    return savedOrders ? JSON.parse(savedOrders) : []
+  })
   
   const [quantity, setQuantity] = useState(() => {
     const savedQuantities = localStorage.getItem('quantity')
@@ -53,6 +57,10 @@ function App() {
     localStorage.setItem('quantity', JSON.stringify(quantity))
   },[quantity])
 
+  useEffect(()=>{
+    localStorage.setItem('orders', JSON.stringify(orders))
+  },[orders])
+
   const addToCart = (product)=>{
     const selectedQuantity = quantity[product.id] || 1  
     
@@ -76,6 +84,7 @@ function App() {
  }
  
  const navigate =  useNavigate()
+
  const handlePlaceOrder = ()=>{
   // Here you would typically send the order data to your backend server
   // For this example, we'll just clear the cart
@@ -96,11 +105,20 @@ function App() {
     
 
  }  
- setOrders(prev => [...prev, newOrder])
+ setOrders(prev => {
+  const updatedOrders = [...prev, newOrder]
+  localStorage.setItem('orders', JSON.stringify(updatedOrders))
+  return updatedOrders
+  })
+   
      navigate(`/tracking/${orderId2}`);
    setCart([])
    setQuantity({})
+ 
  }    
+
+console.log('orders in app component', orders)
+
 
  const handleQuantity = (productId, newQuantity)=>{
   setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))
@@ -167,7 +185,8 @@ function App() {
     
     />} 
     />
-    <Route path='/tracking:id' 
+  Ç
+    <Route path='/tracking/:id' 
     element={
     <Tracking orders={orders}
     />}

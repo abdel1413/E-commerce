@@ -141,7 +141,7 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
                 </div>
                 
                  {deliverOptions.map(option =>{
-                                   console.log('es', option.estimatedDeliveryTimeMs)
+    
                     const shipping = option.priceCents <= 0? "Free shipping": `${moneyFormatter(option.priceCents)}-shipping`
                    
                    return( <div key={option.id}
