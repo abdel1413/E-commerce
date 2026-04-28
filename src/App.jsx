@@ -5,7 +5,7 @@ import { CheckoutPage } from './components/CheckoutPage'
 import { Orders } from './components/Orders'
 import { HomePage } from './components/homePage'
 import { Tracking } from './components/Tracking'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 import dayjs from 'dayjs'
@@ -16,8 +16,15 @@ import dayjs from 'dayjs'
  
 function App() {
   const [cart,setCart] = useState(() => {
-    const savedCart = localStorage.getItem('cart')
-    return savedCart ? JSON.parse(savedCart) : []
+    try {
+      
+      const savedCart = localStorage.getItem('cart')
+      return savedCart ? JSON.parse(savedCart) : []
+
+    } catch (error) {
+      console.error('Error parsing cart from localStorage:', error)
+     return [] 
+    }
   })
   const[orderId, setOrderId] = useState(null)
 
@@ -26,10 +33,10 @@ function App() {
     return savedOrders ? JSON.parse(savedOrders) : []
   })
   
-  const [quantity, setQuantity] = useState(() => {
-    const savedQuantities = localStorage.getItem('quantity')
-    return savedQuantities ? JSON.parse(savedQuantities) : {}
-  })
+  // const [quantity, setQuantity] = useState(() => {
+  //   const savedQuantities = localStorage.getItem('quantity')
+  //   return savedQuantities ? JSON.parse(savedQuantities) : {}
+  // })
   
 
   useEffect(()=> {
@@ -53,23 +60,26 @@ function App() {
   },[cart]) 
 
   // Persist quantities to localStorage whenever they change
-  useEffect(()=>{
-    localStorage.setItem('quantity', JSON.stringify(quantity))
-  },[quantity])
+  // useEffect(()=>{
+  //   localStorage.setItem('quantity', JSON.stringify(quantity))
+  // },[quantity])
 
   useEffect(()=>{
     localStorage.setItem('orders', JSON.stringify(orders))
   },[orders])
 
   const addToCart = (product)=>{
-    const selectedQuantity = quantity[product.id] || 1  
+    
     
     setCart(prev => {
-    const existingProduct = prev.find(item => item.id ===product.id)
+      const existingProduct = prev.find(item => item.id ===product.id)
+      
+      // const selectedQuantity = quantity[product.id] || 1  
+    const selectedQuantity = 1  
 
     if(existingProduct){
      return  prev.map(item => item.id === product.id 
-      ? {...item, quantity: item.quantity +selectedQuantity, }
+      ? {...item, quantity: (item.quantity||0 )+ selectedQuantity, }
       : item
      )
     }
@@ -113,7 +123,7 @@ function App() {
    
      navigate(`/tracking/${orderId2}`);
    setCart([])
-   setQuantity({})
+  //  setQuantity({})
  
  }    
 
@@ -141,10 +151,11 @@ function App() {
    
     ))
  }
- const cartQuantity = useMemo(()=> (cart||[]).reduce((acc, next )=> acc +(Number(next.quantity)||0), 0), [cart])
+//  const cartQuantity = useMemo(()=> (cart||[]).reduce((acc, next )=> acc +(Number(next.quantity)||0), 0), [cart])
+  const cartQuantity = (cart||[]).reduce((acc, next )=> acc +(Number(next.quantity)||0), 0)
    
   
-  const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)
+  const totalPrice =( cart ||[]).reduce((tot, next)=> tot+ ((next.priceCents)*(Number(next.quantity)||0)),0)
   
   return (
     <>
@@ -157,7 +168,7 @@ function App() {
     addToCart={addToCart} 
     handleQuantity={handleQuantity}
     cartQuantity={cartQuantity}
-    quantity={quantity}/>}
+   />}
      /> 
     <Route path='/checkout' 
     element={
@@ -168,7 +179,7 @@ function App() {
         totalPrice={totalPrice}
         handlePlaceOrder={handlePlaceOrder}
         handleQuantity={handleQuantity}
-        setQuantity={setQuantity}
+      
         updateQuantity={updateQuantity}
         />} />
 

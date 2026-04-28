@@ -12,9 +12,10 @@ cart
   // const quantity = cart? cart.reduce((acc,next)=> acc + next.quantity,0)
   //                      : 0;
                      
-console.log('quantity after buy again',cartQuantity, ) 
+console.log('cart quantity after buy again',cartQuantity, ) 
 
-console.log('cart in navbar', cart)
+console.log("cart check:", cart.length)
+// console.log("quantities:", cart.map(i => i.quantity))
 console.log('quantity in navbar',quantity)
 
   return (
