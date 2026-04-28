@@ -24,7 +24,8 @@ export const Tracking =()=>{
     const {name, image, quantity} = trackingItem || {}
   
     const deliveryDate = (savedOrders.flatMap(order => order.estimatedDeliveryTime))
-   const formattedDeliveryDate = dayjs(deliveryDate).format("dddd, MMMM D")
+    console.log('delivery date', deliveryDate)
+   const formattedDeliveryDate = dayjs(deliveryDate[0]).format("dddd, MMMM D")
 
    
 
@@ -66,13 +67,12 @@ export const Tracking =()=>{
           Quantity: {quantity || 1}
         </div>
 
-        <div className="relative w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-20">
+        <div className=" w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
           
-          <div className="absolute inset-0 rounded-xl p-[3px]  animate-[spin_4s_linear_infinite] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 ">
-          <div className="w-full h-full rounded-xl bg-white"></div>
+          <div className="rounded-xl bg-white w-full h-full flex items-center justify-center p-[2px]">
+            <img className="product-image w-full h-full  object-cover rounded-xl p-0  text-black "
+                src={`/${image}`}/>
           </div>
-          <img className="product-image absolute inset-[3px] w-[calc(100%-6px)] h-[calc(100%-6px)] object-cover rounded-xl p-0  border border-gray-300  shadow: shadow-lg dark: text-black "
-          src={`/${image}`}/>
         </div>
 
 
