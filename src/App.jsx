@@ -5,7 +5,7 @@ import { CheckoutPage } from './components/CheckoutPage'
 import { Orders } from './components/Orders'
 import { HomePage } from './components/homePage'
 import { Tracking } from './components/Tracking'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 import dayjs from 'dayjs'
@@ -69,7 +69,7 @@ function App() {
 
     if(existingProduct){
      return  prev.map(item => item.id === product.id 
-      ? {...item, quantity:selectedQuantity, }
+      ? {...item, quantity: item.quantity +selectedQuantity, }
       : item
      )
     }
@@ -117,15 +117,15 @@ function App() {
  
  }    
 
-console.log('orders in app component', orders)
+
 
 
  const handleQuantity = (productId, newQuantity)=>{
-  setQuantity(prev => ({...prev, [productId]: Number(newQuantity)}))
+  //setQuantity(prev => ({...prev, [productId]: Number(newQuantity)||0}))
 
   setCart(prev => prev.map(item => 
     item.id === productId
-    ? {...item, quantity:Number(newQuantity)}
+    ? {...item, quantity:Number(newQuantity)||0}
     : item
     ))
  }  
@@ -141,8 +141,7 @@ console.log('orders in app component', orders)
    
     ))
  }
- const cartQuantity = 
-   cart.reduce((acc, next )=> acc + next.quantity, 0)
+ const cartQuantity = useMemo(()=> (cart||[]).reduce((acc, next )=> acc +(Number(next.quantity)||0), 0), [cart])
    
   
   const totalPrice = cart.reduce((tot, next)=> tot+(next.priceCents*next.quantity),0)

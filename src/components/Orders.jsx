@@ -4,15 +4,11 @@ import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 
 export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
-  cart 
 
-
-
-
-   
+   console.log("cart after click on buy again", cart)
   return ( 
     <div className="main">
-        <Navbar/>
+        <Navbar cart={cart}/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
       <div className="orders-grid  ">
         <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">
@@ -39,7 +35,7 @@ export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
            className=" flex w-800 justify-between item-center px-2 py-6 border-b border-gray-400 rounded-lg">
             <div key={item.id} className="order-product-item flex gap-4 mb-4">
               <div className="product-image-container w-32 h-32">
-               <img src={item.image}/>
+               <img src={`/${item.image}`}/>
               </div>
               <div className="product-details">
                   <div className="product-name">
