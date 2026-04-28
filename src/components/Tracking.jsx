@@ -3,33 +3,35 @@ import dayjs from "dayjs"
 import { Link, useParams } from "react-router"
 
 
-export const Tracking =({orders })=>{
-  console.log('orders in tracking page', orders)
+export const Tracking =()=>{
+
  
-  const orderId = useParams()
- 
- 
-   //const trackingOrder = orders.map( order => console.log(order.items))
-  
+
+  const orderId = useParams() 
 
     const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
    
+    //let trackingOrder = savedOrders[0].items.find(item => item.id ===(orderId.id) ) 
 
-    let trackingOrder = savedOrders[0].items.find(item => item.id ===(orderId.id) ) 
-    console.log('tracking order', trackingOrder.name, trackingOrder.quantity, trackingOrder.image )
-    const {name, image, quantity} = trackingOrder
-    console.log('img',image)
+    //using flatmap to create a single array of all items from all orders
+    const allItems = savedOrders.flatMap(order => order.items)
+    console.log('all items from all orders', allItems)
 
-    const deliveryDate = (savedOrders.map(order => order.estimatedDeliveryTime))
-   const formattedDeliveryDate = dayjs(deliveryDate[0]).format("dddd, MMMM D")
+     const trackingItem = allItems.find(item => item.id ===(orderId.id))
+   console.log('tracking item', trackingItem)
 
+   
+    const {name, image, quantity} = trackingItem || {}
+  
+    const deliveryDate = (savedOrders.flatMap(order => order.estimatedDeliveryTime))
+   const formattedDeliveryDate = dayjs(deliveryDate).format("dddd, MMMM D")
 
+   
 
    //create progress bar logic based on order status
    const now = dayjs().valueOf()
   
    const order = savedOrders[0]
-
 
    const {orderDate, estimatedDeliveryTime} = order
    const totalTime = estimatedDeliveryTime - orderDate
@@ -51,12 +53,12 @@ export const Tracking =({orders })=>{
    
     <div className="container mt-6 p-6 bg-gray-100 rounded-lg shadow-lg mb-10">
         <div className="delivery-date text-xl text-bold-500 ">
-          Arriving on {formattedDeliveryDate}
+          Arriving on<span className="text-blue-700 text-xl font-bold "> {formattedDeliveryDate}</span>
         </div>
 
         <div className="product-info">
           
-         {name && <div className="product-name">{name}</div>}
+         {name && <div className="product-name text-lg  ">{name}</div>}
           
         </div>
 
@@ -64,11 +66,17 @@ export const Tracking =({orders })=>{
           Quantity: {quantity || 1}
         </div>
 
-        <img className="product-image w-40 h-40 object-cover rounded p-0  border border-gray-300  shadow: shadow-lg dark: text-black "
-        src={`/${image}`}/>
-
+        <div className="relative w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-20">
+          
+          <div className="absolute inset-0 rounded-xl p-[3px]  animate-[spin_4s_linear_infinite] bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 ">
+          <div className="w-full h-full rounded-xl bg-white"></div>
+          </div>
+          <img className="product-image absolute inset-[3px] w-[calc(100%-6px)] h-[calc(100%-6px)] object-cover rounded-xl p-0  border border-gray-300  shadow: shadow-lg dark: text-black "
+          src={`/${image}`}/>
         </div>
 
+
+        </div>
         <div className="progress-labels-container flex justify-between">
           <div className="progress-label">
             Preparing
@@ -81,7 +89,7 @@ export const Tracking =({orders })=>{
           </div>
         </div>
 
-        <div className="progress-bar-container w-full max-w-md h-5 bg-gray-200 rounded-full overflow-hidden mt-2 ">
+        <div className="progress-bar-container w-full  h-5 bg-gray-200 rounded-full  mt-2 ">
           <div className=" w-full progress-bar h-full bg-blue-300 transition-all duration-300" style={{width: `${progressPercentage}%`}}>
           </div>
         </div>
