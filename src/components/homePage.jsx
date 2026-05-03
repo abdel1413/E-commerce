@@ -5,11 +5,11 @@ import { Navbar } from "./Navbar";
 import { useDebounce } from "./useDebounce";
 import { moneyFormatter } from "../moneyFormatter";
 
-export const HomePage = ({cart, handleQuantity, addToCart,quantity, cartQuantity }) => {
+export const HomePage = ({cart, handleQuantity, addToCart, cartQuantity }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
 
-
+console.log("home page rendered", cartQuantity)
  
   // using debounce hook for reusability  but not for this purpose 
     const useDeb =  useDebounce(searchItem, 500)
@@ -40,7 +40,7 @@ return (
    setSearchItem={setSearchItem} 
    cart={cart} 
    cartQuantity={cartQuantity}
-   quantity={quantity}
+  //  quantity={ cartQuantity}
    />
 
      {  filtered.length ===0 &&
@@ -72,7 +72,7 @@ return (
          
            <DropDown
             dropdownOptions={[1, 2, 3, 4, 5]}
-              value={quantity[product.id] || 1} 
+              value={cartQuantity[product.id] || 1} 
             onChange={(value)=>selectedDropdown(product,value)}
             />
         <button

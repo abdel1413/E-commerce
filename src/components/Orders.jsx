@@ -3,12 +3,13 @@ import { Navbar } from "./Navbar";
 import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 
-export const Orders = ({cart,totalPrice, orderId, orders, addToCart}) => {
+export const Orders = ({cart,totalPrice, orderId, orders,cartQuantity, addToCart}) => {
 
    console.log("cart after click on buy again", cart)
+   console.log("cart quantity in orders after buy again", cartQuantity)
   return ( 
     <div className="main">
-        <Navbar cart={cart}/>
+        <Navbar cart={cart} cartQuantity={cartQuantity}/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
       <div className="orders-grid  ">
         <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">

@@ -192,6 +192,7 @@ function App() {
      addToCart={addToCart}
      orders={orders}
      setOrders={setOrders}
+     cartQuantity={cartQuantity}
     
     />} 
     />
