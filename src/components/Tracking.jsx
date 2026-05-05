@@ -1,25 +1,16 @@
-
 import dayjs from "dayjs"
 import { Link, useParams } from "react-router"
 
 
 export const Tracking =()=>{
-
- 
-
   const orderId = useParams() 
-
     const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
    
     //let trackingOrder = savedOrders[0].items.find(item => item.id ===(orderId.id) ) 
-
     //using flatmap to create a single array of all items from all orders
     const allItems = savedOrders.flatMap(order => order.items)
-    console.log('all items from all orders', allItems)
 
      const trackingItem = allItems.find(item => item.id ===(orderId.id))
-   console.log('tracking item', trackingItem)
-
    
     const {name, image, quantity} = trackingItem || {}
   
@@ -27,7 +18,6 @@ export const Tracking =()=>{
     console.log('delivery date', deliveryDate)
    const formattedDeliveryDate = dayjs(deliveryDate[0]).format("dddd, MMMM D")
 
-   
 
    //create progress bar logic based on order status
    const now = dayjs().valueOf()
@@ -40,8 +30,7 @@ export const Tracking =()=>{
    const elapsedTime = now - orderDate
 
    const progressPercentage = Math.min((elapsedTime / totalTime) * 100, 100)  
-   
-
+  
     return (
    
     <div>
@@ -51,7 +40,6 @@ export const Tracking =()=>{
           View all orders
         </Link>
 
-   
     <div className="container mt-6 p-6 bg-gray-100 rounded-lg shadow-lg mb-10">
         <div className="delivery-date text-xl text-bold-500 ">
           Arriving on<span className="text-blue-700 text-xl font-bold "> {formattedDeliveryDate}</span>

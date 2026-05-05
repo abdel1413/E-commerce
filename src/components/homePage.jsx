@@ -8,8 +8,6 @@ import { moneyFormatter } from "../moneyFormatter";
 export const HomePage = ({cart, handleQuantity, addToCart, cartQuantity }) => {
   const [searchItem, setSearchItem]=useState('')
   const [debounce,setDebounce] = useState('')
-
-console.log("home page rendered", cartQuantity)
  
   // using debounce hook for reusability  but not for this purpose 
     const useDeb =  useDebounce(searchItem, 500)

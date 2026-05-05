@@ -4,9 +4,6 @@ import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 
 export const Orders = ({cart,totalPrice, orderId, orders,cartQuantity, addToCart}) => {
-
-   console.log("cart after click on buy again", cart)
-   console.log("cart quantity in orders after buy again", cartQuantity)
   return ( 
     <div className="main">
         <Navbar cart={cart} cartQuantity={cartQuantity}/>
