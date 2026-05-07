@@ -55,14 +55,31 @@ export const Tracking =()=>{
           Quantity: {quantity || 1}
         </div>
 
-        <div className=" w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
+        {/* <div className=" w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
           
           <div className="rounded-xl bg-white w-full h-full flex items-center justify-center p-[2px]">
             <img className="product-image w-full h-full  object-cover rounded-xl p-0  text-black "
                 src={`/${image}`}/>
           </div>
-        </div>
+        </div> */}
+        
+     <div className="relative w-44 h-40 mt-6 mb-6 mx-auto rounded-xl overflow-hidden">
+  
+  {/* rotating gradient border */}
+  <div className="absolute inset-0 animate-[spin_8s_linear_infinite]">
+    <div className="w-full h-full bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)]"></div>
+  </div>
 
+  {/* mask center so only border shows */}
+  <div className="absolute inset-[3px] bg-white rounded-xl z-10"></div>
+
+  {/* image */}
+  <img
+    className="absolute inset-[3px] w-[calc(100%-6px)] h-[calc(100%-6px)] object-cover rounded-xl z-20"
+    src={`/${image}`}
+    alt={name}
+  />
+</div>
 
         </div>
         <div className="progress-labels-container flex justify-between">
