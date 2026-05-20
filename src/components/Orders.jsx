@@ -3,44 +3,49 @@ import { Navbar } from "./Navbar";
 import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 
-export const Orders = ({cart,totalPrice, orderId, orders,cartQuantity, addToCart}) => {
+export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
+
+console.log('orders in orders page:', orders)
+  
+
   return ( 
     <div className="main">
         <Navbar cart={cart} cartQuantity={cartQuantity}/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
-      <div className="orders-grid  ">
-        <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">
-          <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
+        { orders.map(order => (   
+            <div className="orders-grid "  key={order.id}>
+            <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">
+            <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
             <div className="order-header-left-section flex gap-4 border border-gray-400 p-2 rounded">
-              <div className="order-date">
+               <div className="order-date">
                 <div className="order-header-label">Order Placed:</div>
-                <div>{dayjs(new Date()).format("dddd,MMMM, D")}</div>
-              </div>
+                <div>{dayjs(order.date).format("dddd, MMMM D")}</div>
+               </div>
 
               <div className="order-total">
                 <div className="order-header-label">Total:</div>
-                <div>${moneyFormatter(totalPrice)}</div>
-              </div>
-             </div>
-             <div className="order-header-right-section">
-              <div className="order-header-label">Order ID:</div>
-              <div>{orderId}</div>
+                <div>${moneyFormatter(order.total)}</div>
+               </div>
             </div>
-          </div>
-            {orders[0].items.map((item)=> (
-              
-          <div key={item.id}
-           className=" flex w-800 justify-between item-center px-2 py-6 border-b border-gray-400 rounded-lg">
-            <div key={item.id} className="order-product-item flex gap-4 mb-4">
-              <div className="product-image-container w-32 h-32">
-               <img src={`/${item.image}`}/>
-              </div>
-              <div className="product-details">
+              <div className="order-header-right-section">
+               <div className="order-header-label">Order ID:</div>
+               <div>{order.id}</div>
+            </div>
+            </div>
+          
+            {order.items.map((item)=> (
+            <div key={item.id}
+                className=" flex w-800 justify-between item-center px-2 py-6 border-b border-gray-400 rounded-lg">
+              <div key={item.id} className="order-product-item flex gap-4 mb-4">
+                <div className="product-image-container w-32 h-32">
+                 <img src={`/${item.image}`}/>
+               </div>
+               <div className="product-details">
                   <div className="product-name">
                       {item.name}
                   </div>
-                  <div className="product-delivery-date">
-                      Arriving on: June 17
+                   <div className="product-delivery-date">
+                      Arriving on: {order.estimatedDeliveryTime ? dayjs(order.estimatedDeliveryTime).format("dddd, MMMM D") : "N/A"}
                    </div>
                    <div className="product-quantity">
                       Quantity: {item.quantity}
@@ -48,7 +53,6 @@ export const Orders = ({cart,totalPrice, orderId, orders,cartQuantity, addToCart
                 <button 
                 className="flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl"
                 onClick={()=>{
-                  console.log('item to add to cart', item)
                   addToCart(item)}}
                 >
                   <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
@@ -64,8 +68,13 @@ export const Orders = ({cart,totalPrice, orderId, orders,cartQuantity, addToCart
         </div>
             ))
             }
+
+           
+        </div>
       </div>
-    </div>
+           )
+          ) } 
+      
     </div>
   );
 }

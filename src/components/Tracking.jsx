@@ -4,32 +4,49 @@ import { Link, useParams } from "react-router"
 
 export const Tracking =()=>{
   const orderId = useParams() 
-    const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
+  
+    // const savedOrders = JSON.parse(localStorage.getItem("orders")) || []
+    const savedOrders = JSON.parse(localStorage.getItem("orders")|| "[]") 
    
     //let trackingOrder = savedOrders[0].items.find(item => item.id ===(orderId.id) ) 
     //using flatmap to create a single array of all items from all orders
     const allItems = savedOrders.flatMap(order => order.items)
 
-     const trackingItem = allItems.find(item => item.id ===(orderId.id))
+     const trackingItem = allItems.find(item => String(item.id) === String(orderId.id))
    
     const {name, image, quantity} = trackingItem || {}
   
     const deliveryDate = (savedOrders.flatMap(order => order.estimatedDeliveryTime))
-    console.log('delivery date', deliveryDate)
+    
    const formattedDeliveryDate = dayjs(deliveryDate[0]).format("dddd, MMMM D")
 
 
    //create progress bar logic based on order status
    const now = dayjs().valueOf()
   
+  
    const order = savedOrders[0]
+   console.log("savedOrders:", savedOrders);
+    
+  //  const {orderDate, estimatedDeliveryTime} = order
+   const orderDate = order?.orderDate;
+   console.log("order:", orderDate);
+   const estimatedDeliveryTime = order?.estimatedDeliveryTime;  
+   console.log("orderDate:", orderDate);
+   console.log("estimatedDeliveryTime:", estimatedDeliveryTime);
+   console.log("now:", now);
 
-   const {orderDate, estimatedDeliveryTime} = order
+   if (!orderDate || !estimatedDeliveryTime) {
+    return <div className="text-red-500 text-xl font-bold flex items-center justify-center h-screen">No order details available.</div>
+   }
    const totalTime = estimatedDeliveryTime - orderDate
 
    const elapsedTime = now - orderDate
 
-   const progressPercentage = Math.min((elapsedTime / totalTime) * 100, 100)  
+   const progressPercentage = totalTime > 0 
+   ? Math.min((elapsedTime / totalTime) * 100, 100)
+    : 0
+  //  Math.min((elapsedTime / totalTime) * 100, 100)  
   
     return (
    
@@ -55,31 +72,27 @@ export const Tracking =()=>{
           Quantity: {quantity || 1}
         </div>
 
-        {/* <div className=" w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
+        <div className=" w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
           
           <div className="rounded-xl bg-white w-full h-full flex items-center justify-center p-[2px]">
             <img className="product-image w-full h-full  object-cover rounded-xl p-0  text-black "
                 src={`/${image}`}/>
           </div>
-        </div> */}
+        </div>
         
-     <div className="relative w-44 h-40 mt-6 mb-6 mx-auto rounded-xl overflow-hidden">
-  
-  {/* rotating gradient border */}
-  <div className="absolute inset-0 animate-[spin_8s_linear_infinite]">
-    <div className="w-full h-full bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)]"></div>
-  </div>
-
-  {/* mask center so only border shows */}
-  <div className="absolute inset-[3px] bg-white rounded-xl z-10"></div>
-
-  {/* image */}
-  <img
-    className="absolute inset-[3px] w-[calc(100%-6px)] h-[calc(100%-6px)] object-cover rounded-xl z-20"
-    src={`/${image}`}
-    alt={name}
-  />
-</div>
+        
+     {/* <div className="relative w-44 h-40 mt-6 mb-6 mx-auto rounded-xl overflow-hidden">
+      
+          <div className="absolute inset-0 animate-[spin_8s_linear_infinite]">
+            <div className="w-full h-full bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)]"></div>
+          </div>
+          <div className="absolute inset-[3px] bg-white rounded-xl z-10"></div>
+        <img
+          className="absolute inset-[3px] w-[calc(100%-6px)] h-[calc(100%-6px)] object-cover rounded-xl z-20"
+          src={`/${image}`}
+          alt={name}
+        />
+      </div> */}
 
         </div>
         <div className="progress-labels-container flex justify-between">

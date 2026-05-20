@@ -103,7 +103,7 @@ function App() {
   // console.log('Order ID:', orderId)
   const orderId2 = crypto.randomUUID()
   setOrderId(orderId2)
- 
+ const {shippingPrice,  total, totalBeforeTax, tax} = calculateOrderTotal(cart);
   
   const newOrder = {
     id: orderId2,
@@ -111,23 +111,39 @@ function App() {
     date: new Date(),
     orderDate: dayjs().valueOf(),
     estimatedDeliveryTime: dayjs().add(7, 'day').valueOf(),
-    status: 'Processing'
+    status: 'Processing',
+    shippingPrice,
+    total,
+    totalBeforeTax,
+    tax
+  }
     
 
- }  
+ 
+
+ 
  setOrders(prev => {
   const updatedOrders = [...prev, newOrder]
+  
   localStorage.setItem('orders', JSON.stringify(updatedOrders))
   return updatedOrders
   })
    
      navigate(`/tracking/${orderId2}`);
-   setCart([])
+     
+    setCart([])
   //  setQuantity({})
  
  }    
 
 
+const calculateOrderTotal = (cart)=>{
+   const shippingPrice = cart.reduce((acc, next) => acc + (next.shippingPrice || 0), 0)
+    const totalBeforeTax = (totalPrice + shippingPrice)
+    const tax = ((totalPrice + shippingPrice)*0.1)
+    const total =(totalBeforeTax + tax )
+    return  {total, shippingPrice, tax, totalBeforeTax}
+ }
 
 
  const handleQuantity = (productId, newQuantity)=>{
@@ -154,9 +170,7 @@ function App() {
 //  const cartQuantity = useMemo(()=> (cart||[]).reduce((acc, next )=> acc +(Number(next.quantity)||0), 0), [cart])
   const cartQuantity = (cart||[]).reduce((acc, next )=> acc +(Number(next.quantity)||0), 0)
    
-  
   const totalPrice =( cart ||[]).reduce((tot, next)=> tot+ ((next.priceCents)*(Number(next.quantity)||0)),0)
-  
   return (
     <>
     
@@ -175,11 +189,11 @@ function App() {
        <CheckoutPage 
        cart={cart} 
        setCart={setCart}
+       orderTotal={calculateOrderTotal}
         cartQuantity={cartQuantity}
         totalPrice={totalPrice}
         handlePlaceOrder={handlePlaceOrder}
         handleQuantity={handleQuantity}
-      
         updateQuantity={updateQuantity}
         />} />
 
@@ -192,6 +206,7 @@ function App() {
      addToCart={addToCart}
      orders={orders}
      setOrders={setOrders}
+     calculateOrderTotal={calculateOrderTotal}
      cartQuantity={cartQuantity}
     
     />} 

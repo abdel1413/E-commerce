@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { Navbar } from "./Navbar";
-import axios from "axios";
+//import axios from "axios";
 import { moneyFormatter } from "../moneyFormatter";
 import dayjs from "dayjs";
 import { cartArray } from "../data/cartArray";
@@ -10,12 +10,14 @@ import { Link } from "react-router";
 
 cartArray
 
-export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, totalPrice, handlePlaceOrder}) => {
+export const CheckoutPage = ({cart,setCart,orderTotal,  cartQuantity, handleQuantity, totalPrice, handlePlaceOrder}) => {
   const [editId, setEditId] = useState(null)
   const [inputValue, setInputValue] = useState('')
   const [delivery,setDelivery] = useState([])
  
- 
+
+ const {shippingPrice, totalBeforeTax, tax,total} = orderTotal(cart)
+
   const handleEdit = (item)=>{
     setEditId(item.id)
     setInputValue(item.quantity)
@@ -23,14 +25,17 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
   
   } 
 
-  // const [input, setInput] = useState("")
-   useEffect(()=>{
-     axios.get('http://localhost:3000/api/delivery-options?expand=estimatedDeliveryTime').then( response =>
-      setDelivery(response.data)
-     )
 
-   },[])
-  delivery
+
+  // const [input, setInput] = useState("")
+  //  useEffect(()=>{
+  //    axios.get('http://localhost:3000/api/delivery-options?expand=estimatedDeliveryTime').then( response =>
+  //     setDelivery(response.data)
+  //    )
+
+  //  },[])
+ delivery
+ setDelivery
     //const shippingPrice = useRef(0)
   // const handleDelivery = ()=>{
   // }
@@ -51,12 +56,7 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
      
       
   }
-  const shippingPrice = cart.reduce((acc, next) => acc + (next.shippingPrice || 0), 0)
 
-  const totalBeforeTax = (totalPrice + shippingPrice)
- 
-  const tax = ((totalPrice + shippingPrice)*0.1)
-  const orderTotal =(totalBeforeTax + tax )
 
   const estimatedDeliveryTimes = cart.map(item => {
     const option = deliverOptions.find(option => option.id === item.deliveryOptionId)
@@ -205,7 +205,7 @@ export const CheckoutPage = ({cart,setCart,  cartQuantity, handleQuantity, total
 
           <div className="payment-summary-row total-row flex justify-between font-bold text-lg mt-4 text-red-600">
             <div>Order total:</div>
-            <div className="payment-summary-money">${moneyFormatter(orderTotal)}</div>
+            <div className="payment-summary-money">${moneyFormatter(total)}</div>
           </div>
             <Link to='/orders'>
           <button onClick={()=>handlePlaceOrder()}
