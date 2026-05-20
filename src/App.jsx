@@ -189,9 +189,10 @@ const calculateOrderTotal = (cart)=>{
        <CheckoutPage 
        cart={cart} 
        setCart={setCart}
-       orderTotal={calculateOrderTotal}
+      orders={orders}
         cartQuantity={cartQuantity}
         totalPrice={totalPrice}
+        calculateOrderTotal={calculateOrderTotal}
         handlePlaceOrder={handlePlaceOrder}
         handleQuantity={handleQuantity}
         updateQuantity={updateQuantity}

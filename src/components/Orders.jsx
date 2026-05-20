@@ -6,13 +6,15 @@ import dayjs from "dayjs";
 export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
 
 console.log('orders in orders page:', orders)
+
   
 
   return ( 
     <div className="main">
         <Navbar cart={cart} cartQuantity={cartQuantity}/>
       <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
-        { orders.map(order => (   
+        { orders.map(order => (  
+          console.log('order:', order.total), 
             <div className="orders-grid "  key={order.id}>
             <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">
             <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">

@@ -10,13 +10,13 @@ import { Link } from "react-router";
 
 cartArray
 
-export const CheckoutPage = ({cart,setCart,orderTotal,  cartQuantity, handleQuantity, totalPrice, handlePlaceOrder}) => {
+export const CheckoutPage = ({cart,setCart, calculateOrderTotal, cartQuantity, handleQuantity, totalPrice, handlePlaceOrder}) => {
   const [editId, setEditId] = useState(null)
   const [inputValue, setInputValue] = useState('')
   const [delivery,setDelivery] = useState([])
  
 
- const {shippingPrice, totalBeforeTax, tax,total} = orderTotal(cart)
+ const {shippingPrice, totalBeforeTax, tax,total} = calculateOrderTotal(cart)
 
   const handleEdit = (item)=>{
     setEditId(item.id)
