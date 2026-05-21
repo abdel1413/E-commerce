@@ -6,7 +6,7 @@ import { Orders } from './components/Orders'
 import { HomePage } from './components/homePage'
 import { Tracking } from './components/Tracking'
 import { useEffect, useState } from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import { deliverOptions } from './data/deliverOptions'
 import dayjs from 'dayjs'
 
@@ -39,20 +39,20 @@ function App() {
   // })
   
 
-  useEffect(()=> {
-    fetch("http://localhost:3000/api/products")
-    .then(resp =>{
-      return resp.json()})
-    .then(data =>(data))
+  // useEffect(()=> {
+  //   fetch("http://localhost:3000/api/products")
+  //   .then(resp =>{
+  //     return resp.json()})
+  //   .then(data =>(data))
+  
+  // },[])
+  
 
-
-  },[])
-
-  useEffect(()=>{
-    axios.get("http://localhost:3000/api/products").then(resp=> resp.data)
-    axios.get('http://localhost:3000/api/cart-items?expand=product').then(resp => resp.data)
+  // useEffect(()=>{
+  //   axios.get("http://localhost:3000/api/products").then(resp=> resp.data)
+  //   axios.get('http://localhost:3000/api/cart-items?expand=product').then(resp => console.log('cart items with product details:', resp.data))
     
-  },[])
+  // },[])
 
   // Persist cart to localStorage whenever it changes
   useEffect(()=>{
