@@ -5,64 +5,65 @@ import dayjs from "dayjs";
 
 export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
 
-console.log('orders in orders page:', orders)
-
-  
-
   return ( 
-    <div className="main">
+    <div className="main px-3 md: px-6 ">
         <Navbar cart={cart} cartQuantity={cartQuantity}/>
-      <div className="page-title mb-3 text-xl mt-5">Your Orders</div>
+      <div className="page-title mb-5 text-2xl mt-5">Your Orders</div>
         { orders.map(order => (  
-            <div className="orders-grid "  key={order.id}>
-            <div className="order-container border border-gray-200 shadow-lg mb-5 rounded-lg">
-            <div className="order-header flex w-800 item-center px-4 py-2 justify-between  bg-gray-300 ">
-            <div className="order-header-left-section flex gap-4 border border-gray-400 p-2 rounded">
+            <div className="orders-grid mb-6 "  key={order.id}>
+            <div className="order-container border border-gray-200 shadow-lg  rounded-lg overflow-hidden">
+            <div className="order-header flex flex-col md:flex-row gap-4 md:items-center md:justify-between py-4 px-4 bg-gray-300 ">
+            <div className="order-header-left-section flex flex-col sm:flex-row gap-4 border border-gray-400 p-3 rounded">
                <div className="order-date">
-                <div className="order-header-label">Order Placed:</div>
+                <div className="order-header-label font-semibold text-sm">Order Placed:</div>
                 <div>{dayjs(order.date).format("dddd, MMMM D")}</div>
                </div>
 
               <div className="order-total">
-                <div className="order-header-label">Total:</div>
+                <div className="order-header-label font-semibold text-sm">Total:</div>
                 <div>${moneyFormatter(order.total)}</div>
                </div>
             </div>
-              <div className="order-header-right-section">
-               <div className="order-header-label">Order ID:</div>
-               <div>{order.id}</div>
+              <div className="order-header-right-section break-all">
+               <div className="order-header-label font-semibold text-sm">Order ID:</div>
+               <div className="text-sm">{order.id}</div>
             </div>
             </div>
           
             {order.items.map((item)=> (
             <div key={item.id}
-                className=" flex max-w-4xl w-full justify-between items-center px-2 py-6 border-b border-gray-400 rounded-lg">
-              <div key={item.id} className="order-product-item flex gap-4 mb-4">
-                <div className="product-image-container w-32 h-32">
-                 <img src={`/${item.image}`}/>
+                className=" flex flex-col lg:flex-row  gap-5 lg:justify-between  px-4 py-6 border-b border-gray-400">
+              <div className="order-product-item flex flex-col sm:flex-row gap-4  w-full">
+                <div className="product-image-container w-full sm:w-32 h-32 bg-gray-100 justify-center items-center flex rounded">
+                 <img src={`/${item.image}`}
+                 alt={item.name}
+                  className="h-full object-contain p-2"
+                 />
                </div>
-               <div className="product-details">
-                  <div className="product-name">
-                      {item.name}
-                  </div>
-                   <div className="product-delivery-date">
-                      Arriving on: {order.estimatedDeliveryTime ? dayjs(order.estimatedDeliveryTime).format("dddd, MMMM D") : "N/A"}
+               <div className="product-details flex-1">
+                  <div className="product-name font-semibold text-lg mb-2">{item.name}</div>
+                    
+                   <div className="product-delivery-date text-gray-600 mb-1">
+                      Arriving on:{" "}
+                       {order.estimatedDeliveryTime ? dayjs(order.estimatedDeliveryTime).format("dddd, MMMM D") : "N/A"}
                    </div>
-                   <div className="product-quantity">
+                   <div className="product-quantity mb-4">
                       Quantity: {item.quantity}
                   </div>
                 <button 
-                className="flex text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl"
+                className="flex items-center gap-2 text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl w-fit"
                 onClick={()=>{
                   addToCart(item)}}
                 >
-                  <img className="buy-again-icon w-6 h-6" src="images/icons/buy-again.png"/>
+                  <img className="buy-again-icon w-5 h-5
+                  " src="images/icons/buy-again.png"
+                  alt="buy again"/>
                   <span className="buy-again-message">Buy it again</span>
                </button>
             </div>
           </div>
-          <Link to={`/tracking/${item.id}`} className=" w-25 px-4">
-                <button className=" bg-white hover:bg-gray-100 rounded-xl  shadow-md hover: shadow-xl  transition  duration-300 w-25 px-4 py-2  ">
+          <Link to={`/tracking/${item.id}`} className="w-full lg: w-auto ">
+                <button className=" bg-white hover:bg-gray-100 rounded-xl  shadow-md hover: shadow-xl  transition  duration-300 w-full lg: w-auto px-6 py-3  ">
                   Track package
                 </button>
               </Link>

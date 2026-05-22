@@ -17,7 +17,7 @@ export const Tracking =()=>{
       return <div className="text-red-500 text-xl font-bold flex items-center justify-center h-screen">No tracking information available for this order.</div>
      }
    
-    const {name, image, quantity} = trackingItem || {}
+    const {name, image,} = trackingItem || {}
   
     const deliveryDate = (savedOrders.flatMap(order => order.estimatedDeliveryTime))
     
@@ -51,7 +51,7 @@ export const Tracking =()=>{
     return (
    
     <div>
-    <div className="main w-1/2 mx-auto">
+    <div className="main w-full max-w-3xl mx-auto px-4">
       <div className="order-tracking">
         <Link className="back-to-orders-link link-primary text-blue-600 border-b border-blue-700 text-xl" to="/orders">
           View all orders
@@ -68,25 +68,25 @@ export const Tracking =()=>{
           
         </div>
 
-        <div className="product-info">
+        {/* <div className="product-info">
           Quantity: {quantity || 1}
-        </div>
+        </div> */}
 
-        <div className=" w-44 h-40 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
-          <div className="rounded-xl bg-white relative w-full max-w-[180px] aspect-square mx-auto mt-6 mb-6flex items-center justify-center p-[2px]">
+        <div className=" relative w-full max-w-[180px] aspect-square mx-auto mt-6 mb-6 flex items-center justify-center mt-6 mb-6 mx-auto rounded-xl p-[3px] bg-[conic-gradient(red,orange,yellow,green,blue,purple,red)] animate-[spin_99s_linear_infinite]" >
+          <div className="rounded-xl bg-white  mb-6flex items-center justify-center p-[2px]">
             <img className="product-image absolute inset-[6px] w-[calc(100%-12px)] h-[calc(100%-12px)] object-cover rounded-xl z-20 "
                 src={`/${image}`}/>
           </div>
         </div>
         </div>
-        <div className="progress-labels-container flex justify-between">
-          <div className="progress-label">
+        <div className="progress-labels-container flex justify-between text-sm md:text-base gap-2 mt-4 ">
+          <div className="progress-label flex-1 text-left current-status">
             Preparing
           </div>
-          <div className="progress-label current-status">
+          <div className="progress-label current-status flex-1 text-center">
             Shipped
           </div>
-          <div className="progress-label">
+          <div className="progress-label flex-1 text-right current-status">
             Delivered
           </div>
         </div>
