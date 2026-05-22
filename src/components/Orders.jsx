@@ -63,7 +63,7 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
             </div>
           </div>
           <Link to={`/tracking/${item.id}`} className="w-full lg: w-auto ">
-                <button className=" bg-white hover:bg-gray-100 rounded-xl  shadow-md hover: shadow-xl  transition  duration-300 w-full lg: w-auto px-6 py-3  ">
+                <button className=" bg-gray-100 hover:bg-gray-300 rounded-xl  shadow-md hover: shadow-xl  transition  duration-300 w-full lg: w-auto px-6 py-3  ">
                   Track package
                 </button>
               </Link>
