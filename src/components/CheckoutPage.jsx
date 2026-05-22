@@ -186,7 +186,7 @@ export const CheckoutPage = ({cart,setCart, calculateOrderTotal, cartQuantity, h
     )) 
   }
      </div>
-     <div className="payment-summary border border-gray-400 p-4 rounded h-fit shadow:shadow-lg md:sticky md:top-5">
+     <div className="payment-summary border border-gray-400 p-4 rounded h-fit shadow:shadow-lg md:sticky md:top-6">
           <div className="payment-summary-title text-xl font-bold mb-4 text-center">
             Order Summary
           </div>

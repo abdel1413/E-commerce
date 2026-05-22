@@ -32,7 +32,7 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
           
             {order.items.map((item)=> (
             <div key={item.id}
-                className=" flex flex-col lg:flex-row  gap-5 lg:justify-between  px-4 py-6 border-b border-gray-400">
+                className=" flex flex-col md:flex-row  gap-5 lg:justify-between  px-4 py-6 border-b border-gray-400">
               <div className="order-product-item flex flex-col sm:flex-row gap-4  w-full">
                 <div className="product-image-container w-full sm:w-32 h-32 bg-gray-100 justify-center items-center flex rounded">
                  <img src={`/${item.image}`}
