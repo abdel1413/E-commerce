@@ -64,7 +64,7 @@ export const Tracking =()=>{
 
         <div className="product-info">
           
-         {name && <div className="product-name text-lg  ">{name}</div>}
+         {name && <div className="product-name text-lg">{name}</div>}
           
         </div>
 
