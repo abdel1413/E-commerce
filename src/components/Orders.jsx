@@ -32,7 +32,7 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
           
             {order.items.map((item)=> (
             <div key={item.id}
-                className=" flex flex-col md:flex-row  gap-5 lg:justify-between  px-4 py-6 border-b border-gray-400">
+               className="flex flex-col md:flex-row gap-5 md:items-start md:justify-between">
               <div className="order-product-item flex flex-col sm:flex-row gap-4  w-full">
                 <div className="product-image-container w-full sm:w-32 h-32 bg-gray-100 justify-center items-center flex rounded">
                  <img src={`/${item.image}`}
@@ -40,43 +40,81 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
                   className="h-full object-contain p-2"
                  />
                </div>
-               <div className="product-details flex-1">
-                  <div className="product-name font-semibold text-lg mb-2">{item.name}</div>
-                    
-                   <div className="product-delivery-date text-gray-600 mb-1">
-                      Arriving on:{" "}
-                       {order.estimatedDeliveryTime ? dayjs(order.estimatedDeliveryTime).format("dddd, MMMM D") : "N/A"}
-                   </div>
-                   <div className="product-quantity mb-4">
-                      Quantity: {item.quantity}
-                  </div>
-                <button 
-                className="flex items-center gap-2 text-white bg-blue-500 hover:bg-blue-700 transition-color duration-300 px-4 py-2 rounded-xl w-fit"
-                onClick={()=>{
-                  addToCart(item)}}
-                >
-                  <img className="buy-again-icon w-5 h-5
-                  " src="images/icons/buy-again.png"
-                  alt="buy again"/>
-                  <span className="buy-again-message">Buy it again</span>
-               </button>
+              <div className="flex flex-col md:flex-row md:items-center justify-between w-full gap-6 border border-gray-300 p-4 rounded-lg shadow-lg">
+
+  {/* LEFT SIDE */}
+ <div className="product-details flex-1 min-w-0">
+
+    <div className="product-name font-semibold text-lg mb-2">
+      {item.name}
+    </div>
+
+    <div className="product-delivery-date text-gray-600 mb-1">
+      Arriving on:{" "}
+      {order.estimatedDeliveryTime
+        ? dayjs(order.estimatedDeliveryTime).format("dddd, MMMM D")
+        : "N/A"}
+    </div>
+
+    <div className="product-quantity mb-4">
+      Quantity: {item.quantity}
+    </div>
+
+    <button
+      className="flex items-center gap-2 text-white bg-blue-500 hover:bg-blue-700 transition duration-300 px-4 py-2 rounded-xl w-fit"
+      onClick={() => {
+        addToCart(item);
+      }}
+    >
+      <img
+        className="buy-again-icon w-5 h-5"
+        src="images/icons/buy-again.png"
+        alt="buy again"
+      />
+
+      <span className="buy-again-message">
+        Buy it again
+      </span>
+    </button>
+
+  </div>
+
+  {/* RIGHT SIDE */}
+  <div className="flex items-center md:justify-end">
+
+    <Link to={`/tracking/${item.id}`}>
+
+      <button
+        className="
+          bg-gray-100
+          hover:bg-gray-300
+          rounded-xl
+          shadow-md
+          hover:shadow-xl
+          transition
+          duration-300
+          px-5
+          py-3
+          whitespace-nowrap
+        "
+      >
+        Track package
+      </button>
+
+    </Link>
+
+  </div>
+
+</div>
+             </div>
             </div>
-          </div>
-          <Link to={`/tracking/${item.id}`} className="w-full md: w-auto flex justify-start md:justify-end mt-4">
-                <button className=" bg-gray-100 hover:bg-gray-300 rounded  shadow-md hover: shadow-xl  transition  duration-300 w-full md: w-52 px-6 py-3">
-                  Track package
-                </button>
-              </Link>
-        </div>
             ))
             }
-
-           
         </div>
       </div>
            )
           ) } 
-      
+    
     </div>
   );
 }
