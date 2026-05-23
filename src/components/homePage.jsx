@@ -41,21 +41,7 @@ return (
   //  quantity={ cartQuantity}
    />
 
-<div className="
-fixed
-top-0
-left-0
-z-50
-text-white
-p-2
-bg-red-500
-sm:bg-blue-500
-md:bg-green-500
-lg:bg-yellow-500
-xl:bg-black
-">
-  Screen Size
-</div>
+
      {  filtered.length ===0 &&
       <div className=" min-h-screen w-full grid grid-cols-1 flex items-center justify-center">
          <h1 className="text-red-500 text-xl text-center">No product found!</h1>
