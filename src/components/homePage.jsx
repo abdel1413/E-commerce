@@ -53,13 +53,13 @@ return (
      { 
       filtered.map((product) => (
       <div
-         className="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
+         className="border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md  transition-shadow duration-300"
          key={product.id}>
         <img
           
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover mb-4 rounded img-product"
+          className="w-full h-44 object-cover mb-4 rounded img-product"
         />
         
         <h3 className="text-lg font-semibold mb-2 line-clamp-1">{product.name}</h3>
@@ -83,7 +83,7 @@ return (
       ))  }
     </div>
 
-    
+
     </>
 
     
