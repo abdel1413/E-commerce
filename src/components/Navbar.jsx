@@ -108,9 +108,12 @@ cart
 //   </div>
 
 // </nav>
-<nav className="bg-blue-500 shadow-md text-white px-4 py-3 w-full">
+<nav className="bg-blue-500 shadow-md text-white px-4 py-2 w-full ">
 
-  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+  <div className="flex flex-col md:flex-row md:items-center max-w-7xl ms-auto gap-3">
+    <Link to='/'
+    className="hidden md:block text-lg font-semibold shrink-0">
+    </Link>
 
     {/* MOBILE TOP ROW */}
     <div className="flex items-center justify-between md:hidden">
@@ -121,7 +124,7 @@ cart
 
       <Link
         to="/Orders"
-        className="text-sm leading-tight hover:text-gray-200"
+        className="text-[13px] leading-tight hover:text-gray-200"
       >
         Returns
         <br />
@@ -131,12 +134,12 @@ cart
       <Link to="/Checkout">
         <div className="flex items-center gap-1 relative">
           <img
-            className="w-10"
+            className="w-8 md:w-10"
             src="images/icons/icons/cart-icon.png"
             alt="cart"
           />
 
-          <div className="absolute -top-1 left-4 text-black font-semibold">
+          <div className="absolute -top-1 left-3 text-black font-semibold">
             {cartQuantity}
           </div>
 
@@ -163,11 +166,11 @@ cart
     </div>
 
     {/* RIGHT SECTION DESKTOP */}
-    <div className="hidden md:flex items-center gap-6">
+    <div className="hidden md:flex items-center gap-8 shrink-0">
 
       <Link
         to="/Orders"
-        className="text-lg font-semibold leading-tight hover:text-gray-200"
+        className="text-base font-medium leading-tight hover:text-gray-200"
       >
         Returns
         <br />
@@ -175,18 +178,18 @@ cart
       </Link>
 
       <Link to="/Checkout">
-        <div className="flex items-center gap-1 relative">
+        <div className="flex items-center gap-2 relative">
           <img
             className="w-10"
             src="images/icons/icons/cart-icon.png"
             alt="cart"
           />
 
-          <div className="absolute -top-1 left-4 text-black font-semibold">
+          <div className="absolute -top-1 left-4 text-black  text-lg font-medium">
             {cartQuantity}
           </div>
 
-          <div className="text-lg font-semibold">cart</div>
+          <div className="text-base font-medium">cart</div>
         </div>
       </Link>
 
