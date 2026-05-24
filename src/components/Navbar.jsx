@@ -35,6 +35,9 @@ cart
   w-full
 ">
 
+<Link to='/' className="text-xl">
+ Home 
+</Link>
   {/* SEARCH */}
   <div className="flex-1">
     <Input
