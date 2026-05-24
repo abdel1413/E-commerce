@@ -89,11 +89,13 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
   {/* DESCRIPTION */}
   
   <div className="min-w-0">
-    <div className="font-semibold text-xl mb-2">
+    {/* <div className="font-semibold text-xl mb-2"> */}
+      <div className="font-semibold text-xl mb-2">
       {item.name}
     </div>
 
-    <div className="text-gray-600 mb-2">
+    {/* <div className="text-gray-600 mb-2"> */}
+    <div className="font-semibold text-xl mb-2">
       Arriving on:{" "}
       {order.estimatedDeliveryTime
         ? dayjs(order.estimatedDeliveryTime).format("dddd, MMMM D")
@@ -103,27 +105,53 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
     <div className="mb-4">
       Quantity: {item.quantity}
     </div>
+      {/*  */}
+      {/* <div> */}
+     <div className="flex gap-3 md:hidden">
+        <button
+          className="
+            flex items-center gap-2
+            text-white bg-blue-500
+            hover:bg-blue-700
+            px-4 py-2 rounded-xl
+          "
+          onClick={() => addToCart(item)}
+        >
+          <img
+            className="w-5 h-5"
+            src="images/icons/buy-again.png"
+            alt="buy again"
+          />
+          Buy it again
+        </button>
 
+        <Link to={`/tracking/${item.id}`}>
+       <button className="bg-gray-100 hover:bg-gray-300 rounded-xl shadow-md px-4 py-2">
+        Track package
+       </button>
+     </Link>
+   </div>
+
+   <div className="hidden md:block">
     <button
-      className="
-        flex items-center gap-2
-        text-white bg-blue-500
-        hover:bg-blue-700
-        px-4 py-2 rounded-xl
-      "
-      onClick={() => addToCart(item)}
+      className="flex items-center gap-2 text-white bg-blue-500 hover:bg-blue-700 px-4 py-2 rounded-xl"
     >
-      <img
-        className="w-5 h-5"
-        src="images/icons/buy-again.png"
-        alt="buy again"
-      />
       Buy it again
     </button>
   </div>
 
+  </div>
+
+<div className="hidden md:flex justify-end items-center">
+  <Link to={`/tracking/${item.id}`}>
+    <button className="bg-gray-100 hover:bg-gray-300 rounded-xl shadow-md px-4 py-2">
+      Track package
+    </button>
+  </Link>
+</div>
+   
   {/* TRACKING */}
-  <div className="flex md:justify-end md:items-center">
+  {/* <div className="flex md:justify-end md:items-center">
     <Link to={`/tracking/${item.id}`}>
       <button
         className="
@@ -139,7 +167,7 @@ export const Orders = ({cart, orders,cartQuantity, addToCart}) => {
       </button>
     </Link>
   </div>
-  
+   */}
 </div>
             ))
             }
